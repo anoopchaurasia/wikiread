@@ -1,0 +1,193 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+p{
+	margin-top: 1em;
+}
+
+h1{
+	font-size: 1.1em;
+	padding: 0px 0 10px 0px;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.aligncenter{
+	text-align:center;
+}
+body {
+	margin: 0;
+	left: 50%;
+	font-family: Georgia,  serif, Verdana, Helvetica, sans-serif;
+	background-color: white;
+	font-size: 11px;
+	color: black;
+}
+
+
+
+.s {
+	  overflow: hidden;
+	  line-height: 1.2em;
+	  padding: 10px;
+	  margin: 10px;
+ }
+
+.text-inside-image {
+	padding: 5px;
+	float: left;
+}
+
+
+.item-item-cont h2 {
+	margin: 5px 6px;
+}
+
+#taskbar {
+ 	height: 30px;
+ 	width: 100%;
+	z-index: 2;
+	visibility: hidden;
+	position: absolute;
+}
+
+#article-container .title {
+	white-space: nowrap;
+	margin: 3px;
+}
+
+.newsSnippet {
+	border-bottom: 1px solid #CCCCCC;
+	float: left;
+	width:94%;
+ 	margin-bottom: 5px;
+	margin-left: 5px;
+	overflow: hidden;
+	padding: 2px 2%;
+}
+ 
+
+.newsSnippet p,.newsSnippet h2 {
+	margin: 0;
+}
+
+.newsSnippet h2 {
+	font-size: 1.1em;
+}
+
+.brief-body {
+	font-size: 1em;
+}
+
+.newsSnippet .brief-image {
+	float: left;
+	margin-right: 13px;
+}
+
+.newsSnippet .brief-image img {
+	max-height: 50px;
+	max-width: 100px;
+}
+
+.item-item-cont {
+	float: left;
+	margin-right: 10px;
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+.image-container {
+	text-align: center;
+	width: 490px;
+	overflow: hidden;
+}
+
+.imageContainer {
+	float: left;
+	padding: 9px;
+}
+
+.right-float {
+	float: right;
+}
+
+.setting-popup{
+	position: absolute;
+	bottom: 0;
+	background-color: #eee;
+	box-shadow:1px -1px 4px 1px #888;
+	color: #000;
+	width: 90%;
+	padding: 5%;
+	z-index: 2;
+	left: 0;
+	min-height: 100px;
+	border-radius: 10px 10px 0 0;
+}
+
+.parent {
+	float: left;
+}
+
+.view.settings {
+	background-color: white;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.view.settings > *{
+	padding: 10px;
+}
+
+.view.settings .demoRedraw div {
+	padding: 10px;
+	line-height: 1.2em;
+	text-align: center;
+	box-shadow: 0px 0px 1px 1px #ccc;
+}
+
+.color-selection, .font-selection {
+	display: table;
+	width: 100%;
+}
+
+.color-selection a, .font-selection a{
+	display: table-cell;
+	padding: 10px;
+}
+
+.color-selection a div, .font-selection a div{
+	box-shadow: 0px 1px 1px 1px #ccc;
+  	line-height: 45px;
+  	text-align: center;
+}
