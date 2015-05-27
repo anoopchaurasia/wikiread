@@ -11,18 +11,18 @@ fm.Class('SectionListController> com.anoop.wikiread.controller.Controller', func
     return instance;
   };
 
-  this.SectionListController = function (articleController, term){
+  this.SectionListController = function (articleController, term, SectionContent){
   	me.term = term;
   	me.articleController=articleController;
-  	me.sectionList = {sections: []};
-  	this.base(SectionListView);
+  	me.sectionList = SectionContent.sectionWiseData;
+  	this.base(SectionListView, true);
   };
 
   this.render = function (){
-  	me.starter.services.getSectionList(me.term, function(sections){
-  		me.sectionList = sections;
-  		me.reRender();
-  	});
+  	// me.starter.services.getSectionList(me.term, function(sections){
+  	// 	me.sectionList = sections;
+  	// 	me.reRender();
+  	// });
   	me.renderOverlay();
   };
 

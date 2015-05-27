@@ -4,9 +4,15 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 	this.init = function (){
 		Static.Const.colorcombos =[{
 			color: '#fff',
+			text: "White",
 			background: '#000'
 		}, {
+  			color: "rgb(132, 114, 91)",
+  			text : "grey",
+			background: "#DBD9C1"
+		},{
 			color: "#000",
+			text: "black",
 			background: '#fff'
 		}];
 		Static.Const.fonts = [16, 20, 26, 32];

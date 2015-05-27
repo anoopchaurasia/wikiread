@@ -16,6 +16,8 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   this.ArticleController = function (starter, args){
   	this.base(ArticleView);
   	this.term = args[0];
+    this.currentSectionIndex= 0;
+    this.sectionContent = null;
     this.currentContent = null;
     this.fillContent = new PageCreater(me.starter.settings);
     $(document).off('horizontal-scroll').on('horizontal-scroll', me.swipe);
@@ -34,16 +36,22 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   };
 
   this.openIndex = function (index){
-    me.starter.services.getSectionByNumber(me.term, index, function (sectionContent){
+    if(index < 0 || index >= me.sectionContent.sectionWiseData.length) {
+      return;
+    }
+      me.currentSectionIndex = parseInt(index);
+      me.sectionContent.setIndex(index);
       me.fillContent.reset();
-      me.fillContent.start(sectionContent.formatedData);
-    });
+      me.fillContent.start(me.sectionContent.formatedData);
+    // me.starter.services.getSectionByNumber(me.term, index, function (sectionContent){
+    // });
   };
 
   this.render = function (cb){
   	this.base.render(cb);
 
   	me.starter.services.getZeroSection(me.term, function (sectionContent){
+      me.sectionContent = sectionContent;
   		me.fillContent.start(sectionContent.formatedData);
   	});
   };
@@ -59,11 +67,16 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   };
 
   this.gotoPage = function (){
+    var _goto = $("#goto");
+    if(_goto.length){
+      _goto.remove();
+      return;
+    }
     var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
     $("<div id='goto'><form><input placeholder='"+placeholder+"'' type='text'/><a class='btn btn-primary'>GO</a></form></div>")
     .appendTo(document.body).on('click', '.btn', function(){
       me.fillContent.gotToPage($(this).prev().val()-1);
-      $(this).parent().remove();
+      $("#goto").remove();
     }).on('keyup', 'input',function(){
       if(this.value < 1 || this.value > me.fillContent.total_pages) {
         this.value = "";
@@ -76,24 +89,39 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   };
   this.openSections = function (){
     fm.Include('com.anoop.wikiread.controller.SectionListController', function(){
-      new com.anoop.wikiread.controller.SectionListController(me, me.term).render();
+      new com.anoop.wikiread.controller.SectionListController(me, me.term, me.sectionContent).render();
     });
 
   };
 
+  this.renderNextSection = function () {
+    me.openIndex(me.currentSectionIndex+1);
+  };
+  this.renderPrevSection = function () {
+    me.openIndex(me.currentSectionIndex-1);
+  };
+
   this.swipe = function (e, start, end, diff){
     if(diff > 0) {
-        me.fillContent.goToPrevPage();
+        if(me.fillContent.goToPrevPage() === false){
+          me.renderPrevSection();
+        }
     } else {
-        me.fillContent.goToNextPage();
+        if(me.fillContent.goToNextPage() === false){
+          me.renderNextSection();
+        }
     }
   };
   this.handleKey = function(e) {
     if(e.which === 37){
-      me.fillContent.goToPrevPage();
+      if(me.fillContent.goToPrevPage() === false){
+        me.renderPrevSection();
+      }
     }
     if(e.which === 39){
-      me.fillContent.goToNextPage();
+      if(me.fillContent.goToNextPage() === false){
+        me.renderNextSection();
+      }
     }
   };
 });

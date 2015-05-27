@@ -26,7 +26,9 @@ fm.Class('SearchController> com.anoop.wikiread.controller.Controller', function(
   };
 
   this.showTerm = function (e){
-    me.starter.load("article/"+ e.currentTarget.dataset.term);
+    me.starter.services.resolveRedirect(e.currentTarget.dataset.term, function(redirect_term){
+      me.starter.load("article/"+ redirect_term);
+    });
   };
 
 });

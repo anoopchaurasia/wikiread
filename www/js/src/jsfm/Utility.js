@@ -335,5 +335,11 @@ jsfm.Utility = function (me) {
         }
         return newObj;
     };
+    Static.timeElapsed = function () {
+        var t = new Date().getTime();
+        return function (){
+            alert(new Date().getTime() - t);
+        }
+    };
 
 };

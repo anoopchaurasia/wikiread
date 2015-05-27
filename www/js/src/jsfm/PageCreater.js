@@ -40,6 +40,10 @@ jsfm.PageCreater = function (me) {
 
 	this.reset = function (){
 		me.tagObj= null;
+        me.$container.css({
+            "-webkit-transform": "translate3d(0, 0, 0)",
+            "transform": "translate3d(0, 0, 0)"
+        });
 	};
 
 	this.initialize = function () {
@@ -73,7 +77,7 @@ jsfm.PageCreater = function (me) {
         me.setTimeOut = setTimeout (function () {
             truncateWithHeight(htmls[1], me.tagObj, columnRecursive, current_rendered_array);
             htmls[0].style.textAlign = me.settings.textAlign;
-        }, 200);
+        }, me.total_pages === 1? 300 : 100);
     }
 
     function createParentTags (articleHeight) {
@@ -87,33 +91,45 @@ jsfm.PageCreater = function (me) {
         return [htm, s];
     }
 
+    var currentDom;
+
     function truncateWithHeight  (dom, obj, cb, arr) {
- 		var limit = me.articleHeight - me.settings.getLineHeight() * 1.5;
+        currentDom = dom;
+ 		var limit = me.articleHeight;
  		var t = addElem(dom, obj, limit, arr);
  		cb(t);
 	}
 
     function createElem (obj, dom) {
-		var elem = document.createElement(obj.tag);
-		if(obj.src){
-			elem.src=obj.src;
-			elem.style.maxHeight=100+"px";
-			elem.style.maxWidth=100+"px";
-			dom.style.height = "100px";
-			dom.style.width = "100px";
-			dom.style.float = "right";
-		}
-		if(obj.content) {
-			elem.innerHTML = obj.content;
-		}
+        var elem;
+        if(obj.tag === "#text") {
+            elem = document.createTextNode(" " + obj.content);
+        } else {
+    		var elem = document.createElement(obj.tag);
+    		if(obj.src){
+    			elem.src=obj.src;
+    			elem.style.maxHeight=100+"px";
+    			elem.style.maxWidth=100+"px";
+    			dom.style.height = "100px";
+    			dom.style.width = "100px";
+    			dom.style.float = "right";
+    		}
+    		if(obj.content) {
+    			elem.innerHTML = obj.content;
+    		}
+        }
 		return elem;
 	};
+
+    function getOffset(elem) {
+        return currentDom.scrollHeight;
+    }
 
 	function addElem (dom, obj, limit, arr){
 		var elem = createElem(obj, dom);
  		dom.appendChild(elem);
 
- 		if(elem.offsetTop > limit) {
+ 		if(getOffset(elem) > limit) {
  			$(elem).detach();
  			return [];
  		}
@@ -132,31 +148,41 @@ jsfm.PageCreater = function (me) {
     };
 
     function stripHTML() {
-        var htmlStr = me.content
-	        .replace(/>|</gim, function(a){ return a=='>'?"> ": " <"})
-	        .replace(/\sstyle=""/gim, " ")
-	        .replace( /(\s*)<\/?[^<>]*\/?>|(\s*)(.*?)\s/gim,function(a, b){
-	            if(a.match(/<\/?[^<>]*\/?>/gim)) return a;
-	            return "<span class='a'>"+ a+" </span>";
-        });
+        var htmlStr = me.content;
+	       //  .replace(/>|</gim, function(a){ return a=='>'?"> ": " <"})
+	       //  .replace(/\sstyle=""/gim, " ")
+	       //  .replace( /(\s*)<\/?[^<>]*\/?>|(\s*)(.*?)\s/gim,function(a, b){
+	       //      if(a.match(/<\/?[^<>]*\/?>/gim)) return a;
+	       //      return "<span class='a'>"+ a+" </span>";
+        // });
 		var html = $("<div>"+htmlStr+"</div>");
-        html.find("iframe, img").remove();
+       // html.find("iframe, img").remove();
 		return createTags(html[0], {});
 	};
 
 	function createTags(elem, storage) {
 		storage = storage || {};
-        storage.tag = elem.tagName;
+        storage.tag =  elem.nodeName;
         storage.childs = [];
-        if(elem.className == "a") {
-            storage.content = elem.innerHTML;
-            return storage;
+        if(elem.nodeName == "#text") {
+            return elem.textContent.split(" ").map(function(c){
+                return {
+                    tag: "#text",
+                    content: c,
+                    childs: []
+                };
+            });
         }
-        var t;
+        var t, temp;
         for (var i = 0, len = elem.childNodes.length; i < len; i++) {
             t= elem.childNodes[i];
             if( !(t.nodeName == "#text" && t.nodeValue.trim() == "")) {
-                storage.childs.push(createTags(t, {}));
+                temp = createTags(t, {});
+                if(jQuery.isArray(temp)){
+                    Array.prototype.push.apply(storage.childs, temp);
+                }else {
+                    storage.childs.push(temp);
+                }
             }
         };
         return storage;
@@ -227,20 +253,20 @@ jsfm.PageCreater = function (me) {
 	};
 
 	this.goToNextPage = function (){
-        setTransformValue ("-");
+       return setTransformValue ("-");
     };
 
     function setTransformValue (operator) {
         switch(operator) {
             case "+" :{
                 if(me.isFirstPage()) {
-                    return;
+                    return false;
                 }
                 break;
             }
             case "-" : {
                 if(me.isEndReach()) {
-                    return;
+                    return false;
                 }
                 break;
             }
@@ -256,10 +282,11 @@ jsfm.PageCreater = function (me) {
             }
         }
         me.setPage();
+        return true;
     }
 
      this.goToPrevPage = function (){
-       setTransformValue ("+");
+       return setTransformValue ("+");
     };
 
 };

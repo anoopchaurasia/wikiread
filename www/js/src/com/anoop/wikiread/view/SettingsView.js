@@ -20,7 +20,7 @@ fm.Class('SettingsView> com.anoop.wikiread.view.View', function(me){ this.setMe 
   this.colorSelectionView = function (ctrl){
     var list = ctrl.settings.colorcombos.map(function(colorcombo, index){
       return  <a data-index={index}>
-      <div style={{"color": colorcombo.color, "background": colorcombo.background}} class={((ctrl.settings.colorcombo.color == colorcombo.color && ctrl.settings.colorcombo.background == colorcombo.background) ? 'selected': '')}>aA</div>
+      <div style={{"color": colorcombo.color, "background": colorcombo.background}} class={((ctrl.settings.colorcombo.color == colorcombo.color && ctrl.settings.colorcombo.background == colorcombo.background) ? 'selected': '')}>{colorcombo.text}</div>
       </a>
     });
     return <div class="color-selection settings-selection">
@@ -51,8 +51,8 @@ fm.Class('SettingsView> com.anoop.wikiread.view.View', function(me){ this.setMe 
   };
 
   this.demoView = function (ctrl){
-    return <div style={{"text-align": ctrl.settings.textAlign, "fontSize": ctrl.settings.fontSize + "px", "color": ctrl.settings.colorcombo.color, "background": ctrl.settings.colorcombo.background}}>
-      This is a text demo
+    return <div className="demo-container" style={{"text-align": ctrl.settings.textAlign, "fontSize": ctrl.settings.fontSize + "px", "color": ctrl.settings.colorcombo.color, "background": ctrl.settings.colorcombo.background}}>
+      This is a demo text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
   };
   this.view = function (ctrl){

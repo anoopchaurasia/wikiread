@@ -26,27 +26,21 @@ fm.Class('SearchView> com.anoop.wikiread.view.View', function(me){ this.setMe = 
     </ul>
   };
   this.view = function (ctrl){
-    return <div class="rotate-page-show">
-        <header class="bar bar-nav event-listing">
-          <div id="event-search">
-            <span style="  overflow: hidden;padding-left: 20px;width: 80px;"
-              class="icon icon-bars pull-left user-info-btn show-anim"></span>
-            <div style="position: relative; width: 100%; display:table-cell;">
+    return <div>
+        <header class="bar bar-nav" style="height: 60px;">
+          <div class="title search-cont">
               <input
                 autocomplete="off"
-                placeholder="Tech, Startups, Business Events..."
+                placeholder="Search Wikipedia .... "
                 name="q"
                 value=""
+                style="color:#555; font-weight: 200"
                 type="text"
                 class="header-search"/>
               <i class="fa fa-search search-icon"></i>
-            </div>
-            <span style="visibility: hidden;display:table-cell; padding: 0px; width:61px; overflow:hidden; margin-right: -46px" class="cancel-circle" >
-              <i class="fa fa-times"></i>
-            </span>
           </div>
         </header>
-        <div  class="content " style="background:#fafafa;padding-top:100px">
+        <div  class="content" style="background:#fafafa;padding-top:57px">
             <div config={me.attachComponent} ctrl={ctrl} view={me.listView}>
             </div>
         </div>

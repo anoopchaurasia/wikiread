@@ -15,15 +15,17 @@ fm.Class('SectionListView> com.anoop.wikiread.view.View', function(me){ this.set
   };
 
   this.list = function (ctrl){
-    var l = ctrl.sectionList.sections.map(function(s, index){
-      return <li data-index={s.index} class="table-view-cell"> {s.line}</li>
+    var l = ctrl.sectionList.map(function(s, index){
+      return <li data-index={index} class="table-view-cell"> {s.title}</li>
     });
     return <ul class="table-view"> {l}</ul>
   };
 
   this.view = function(ctrl){
     return <div id="sectionlist" class="content">
-          {me.list(ctrl)}
+            <div class="content">
+              {me.list(ctrl)}
+            </div>
           </div>
   };
 

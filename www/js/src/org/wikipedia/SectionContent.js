@@ -2,7 +2,13 @@ fm.Package("org.wikipedia");
 fm.Include('lib.wiky');
 fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 
-	this.SectionContent = function (unformateddata){
+	this.SectionContent = function (){
+		this.sectionListData = [];
+		this.formatedData = null;
+		this.sectionWiseData = null;
+	}
+
+	this.formatFromRevision = function (unformateddata) {
 		var data = unformateddata.query.pages[Object.keys(unformateddata.query.pages)[0]].revisions[0]["*"];
 		var parsedData = wtf_wikipedia.parse(data);
 		if(parsedData.type==="redirect") {
@@ -11,6 +17,27 @@ fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 		}
 		this.formatedData = wtf_wikipedia.parseToPlain(parsedData)//.replace(/{{(.*?)}}/g, ""));
 	}
+
+	this.extractFromExtract = function (unformateddata){
+		var data = unformateddata.query.pages[Object.keys(unformateddata.query.pages)[0]].extract;
+		data = data.replace(/=====(.*?)=====|====(.*?)====|===(.*?)===/g, function(a, b, c){
+			var len = (a.split("=").length+1)/2;
+			var r = new RegExp("={"+(len-1)+"}","");
+			return a.replace(r, "<h"+len+">").replace(r, "</h"+len+">");
+		}).split(/==(.*?)\s==\s/g).filter(function(data){
+			return data !== undefined;
+		});
+		var sectionWiseData = [{data: data[0], title:"introduction"}];
+		for (var i = 1; i < data.length; i=i+2) {
+			sectionWiseData.push({title:data[i],data: data[i+1]});
+		};
+		me.sectionWiseData = sectionWiseData;
+		this.formatedData = "<h3>"+ sectionWiseData[0].title+"</h3>"+ sectionWiseData[0].data;
+	}
+
+	this.setIndex = function (index){
+		this.formatedData = "<h3>"+ me.sectionWiseData[index].title+"</h3>"+ me.sectionWiseData[index].data;
+	};
 
 	function removeAllBracket (data){
 		var startIndex = 0;
