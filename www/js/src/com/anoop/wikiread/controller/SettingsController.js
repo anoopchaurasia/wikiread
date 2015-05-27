@@ -24,6 +24,10 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     me.renderOverlay();
   };
 
+  this.close = function (){
+    me.remove();
+  };
+
   this.colorChange = function(e) {
     var index = e.currentTarget.dataset.index;
     me.settings.setColorByIndex(index);
@@ -36,5 +40,15 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     me.settings.setFontByIndex(index);
     me.demoRedraw();
     return false;
+  };
+
+  this.textAlignChange = function (e){
+    var index = e.currentTarget.dataset.index;
+    me.settings.setTextAlignByIndex(index);
+    me.demoRedraw();
+  };
+
+  this.onDestroy = function (){
+    $(document).trigger('setting-changed');
   };
 });

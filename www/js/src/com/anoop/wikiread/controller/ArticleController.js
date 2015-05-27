@@ -16,12 +16,33 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   this.ArticleController = function (starter, args){
   	this.base(ArticleView);
   	this.term = args[0];
+    this.currentContent = null;
     this.fillContent = new PageCreater(me.starter.settings);
     $(document).off('horizontal-scroll').on('horizontal-scroll', me.swipe);
+    $(document).on('keyup', me.handleKey);
+    $(document).on('setting-changed', function (){
+      me.fillContent.$container.css({
+          "-webkit-transform": "translate3d(0, 0, 0)",
+          "transform": "translate3d(0, 0, 0)"
+      });
+      var indexPage = me.fillContent.getCurrentPageIndex();
+      me.reRender();
+      me.fillContent.start(undefined, function(){
+        me.fillContent.gotToPageIndex(indexPage);
+      });
+    });
+  };
+
+  this.openIndex = function (index){
+    me.starter.services.getSectionByNumber(me.term, index, function (sectionContent){
+      me.fillContent.reset();
+      me.fillContent.start(sectionContent.formatedData);
+    });
   };
 
   this.render = function (cb){
   	this.base.render(cb);
+
   	me.starter.services.getZeroSection(me.term, function (sectionContent){
   		me.fillContent.start(sectionContent.formatedData);
   	});
@@ -32,68 +53,47 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
       new com.anoop.wikiread.controller.SettingsController().render();
     });
   };
-  this.gotoPage = function (){
 
+  this.searchPage = function (){
+    me.starter.load('search');
+  };
+
+  this.gotoPage = function (){
+    var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
+    $("<div id='goto'><form><input placeholder='"+placeholder+"'' type='text'/><a class='btn btn-primary'>GO</a></form></div>")
+    .appendTo(document.body).on('click', '.btn', function(){
+      me.fillContent.gotToPage($(this).prev().val()-1);
+      $(this).parent().remove();
+    }).on('keyup', 'input',function(){
+      if(this.value < 1 || this.value > me.fillContent.total_pages) {
+        this.value = "";
+      }
+    }).on('submit', 'form', function (){
+      me.fillContent.gotToPage($('input',this).val()-1);
+      $("#goto").remove();
+      return false;
+    });
   };
   this.openSections = function (){
+    fm.Include('com.anoop.wikiread.controller.SectionListController', function(){
+      new com.anoop.wikiread.controller.SectionListController(me, me.term).render();
+    });
 
   };
 
   this.swipe = function (e, start, end, diff){
-        if(diff > 0) {
-            me.goToPrevPage();
-        } else {
-            me.goToNextPage();
-        }
-    };
-
-    this.goToNextPage = function (){
-        setTransformValue ("-");
-    };
-
-    function setTransformValue (operator) {
-        switch(operator) {
-            case "+" :{
-                if(me.fillContent.isFirstPage()) {
-                    return;
-                }
-                break;
-            }
-            case "-" : {
-                if(me.fillContent.isEndReach()) {
-                    return;
-                }
-                break;
-            }
-        }
-        var w= me.fillContent.columnWidth;
-        var articleContainer = me.fillContent.$container;
-        var oldStyle = articleContainer[0].style.transform.match(/((-|)\d+)/g);
-        if(oldStyle) {
-            oldStyle = oldStyle[1]*1;
-        }else {
-            oldStyle = 0;
-        }
-        var newValue;
-        switch(operator) {
-            case "+" :{
-                newValue = oldStyle + w;
-                me.fillContent.decreasePage();
-                break;
-            }
-            case "-" : {
-                newValue = oldStyle - w;
-                me.fillContent.increasePage();
-                break;
-            }
-        }
-        articleContainer.css({
-            "-webkit-transform": "translate3d("+newValue+"px, 0, 0)",
-            "transform": "translate3d("+newValue+"px, 0, 0)"
-        });
+    if(diff > 0) {
+        me.fillContent.goToPrevPage();
+    } else {
+        me.fillContent.goToNextPage();
     }
-
-     this.goToPrevPage = function (){
-       setTransformValue ("+");
-    };
+  };
+  this.handleKey = function(e) {
+    if(e.which === 37){
+      me.fillContent.goToPrevPage();
+    }
+    if(e.which === 39){
+      me.fillContent.goToNextPage();
+    }
+  };
 });

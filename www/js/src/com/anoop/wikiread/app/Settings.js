@@ -10,6 +10,7 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 			background: '#fff'
 		}];
 		Static.Const.fonts = [16, 20, 26, 32];
+		Static.Const.textAligns = ['justify', 'left', 'right', 'center'];
 	};
 
 	this.Settings = function (settings) {
@@ -17,6 +18,7 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 			margin: {},
 			padding: {}
 		};
+		this.textAlign = settings.textAlign || me.textAligns[0];
 		this.colorcombo = settings.colorcombo || me.colorcombos[0];
 		this.margin = {
 			top:settings.margin.top || 10,
@@ -50,8 +52,20 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 
 	this.setColorByIndex = function(index) {
 		this.colorcombo = me.colorcombos[index];
+		this.save();
 	};
+
 	this.setFontByIndex = function(index) {
 		this.fontSize = me.fonts[index];
+		this.save();
+	};
+
+	this.setTextAlignByIndex = function(index) {
+		this.textAlign = me.textAligns[index];
+		this.save();
+	};
+
+	this.save = function (){
+		window.localStorage._settings = JSON.stringify(me.serialize());
 	};
 });

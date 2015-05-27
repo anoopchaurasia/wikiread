@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var fs = require('fs');
 var path = require('path');
 var UglifyJS = require('cordova-minify/node_modules/uglify-js');
@@ -456,9 +457,12 @@ function jsManage() {
 			})
 		});
 	}
-	var command = "msx -x  js "+ path.join(platformPath, "js/src/com/anoop/wikiread", "view")+ " " + path.join(platformPath, "js/src/com/anoop/wikiread","view");
-	exec(command);
 }
+console.log("msx");
+var command = "msx -x  js "+ path.join(platformPath, "js/src/com/anoop/wikiread", "view")+ " " + path.join(platformPath, "js/src/com/anoop/wikiread","view");
+exec(command, function(a, b){
+	console.log(a,b);
+});
 
 jsManage();
 

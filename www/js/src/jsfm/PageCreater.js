@@ -22,16 +22,24 @@ jsfm.PageCreater = function (me) {
 		me.tagObj= null;
 		this.settings = settings;
 		this.$container = null
+		this.pageIndex = [];
+		this.onRenderComplete = null;
 	};
 
-	this.start = function (content) {
-		this.content = content;
+	this.start = function (content, onRenderComplete) {
+		this.content = content ||  me.content;
+		me.onRenderComplete = onRenderComplete;
 		clearTimeout(me.setTimeOut);
 		this.$container = this.$container || $("#articleContainer");
 		this.$container.empty().css('fontSize', me.settings.fontSize);
 		me.tagObj = me.tagObj || me.getTagObj();
 		me.initialize();
+		me.pageIndex = [];
 		columnRecursive([]);
+	};
+
+	this.reset = function (){
+		me.tagObj= null;
 	};
 
 	this.initialize = function () {
@@ -43,10 +51,17 @@ jsfm.PageCreater = function (me) {
         me.current_page_number = 1;
     }
 
+    this.renderComplete = function(){
+    	me.onRenderComplete && me.onRenderComplete();
+    	me.setPage();
+    };
+
     function columnRecursive (current_rendered_array) {
         if(!current_rendered_array) {
+        	me.renderComplete();
             return;
         }
+        me.pageIndex.push(current_rendered_array.slice());
     	me.total_pages++;
         if(me.total_pages !== 1 && !current_rendered_array.length) {
         	alert("Sorry! Something not working");
@@ -57,6 +72,7 @@ jsfm.PageCreater = function (me) {
         me.$container[0].appendChild(htmls[0]);
         me.setTimeOut = setTimeout (function () {
             truncateWithHeight(htmls[1], me.tagObj, columnRecursive, current_rendered_array);
+            htmls[0].style.textAlign = me.settings.textAlign;
         }, 200);
     }
 
@@ -146,6 +162,56 @@ jsfm.PageCreater = function (me) {
         return storage;
     }
 
+    this.getCurrentPageIndex = function (){
+    	return me.pageIndex[me.current_page_number-1];
+    };
+
+    this.gotToPage = function (page){
+        var page = page + 1;
+        if(page <1 || page > me.total_pages) return;
+    	me.current_page_number = page;
+    	me.setPage();
+    };
+
+    this.gotToPageIndex = function (pageIndex){
+		var index = pageIndex.length  -1;
+		index = index > 0 ? index : 0;
+		var filteredold, currentFiltered= me.pageIndex;
+		while(true) {
+    		currentFiltered= currentFiltered.filter(function(item){
+			  return item[index] === pageIndex[index];
+			});
+			if(currentFiltered.length) {
+				filteredold = currentFiltered;
+			}else{
+				break;
+			}
+
+			if(index-- === 0) {
+				break
+			}
+		}
+		if(index <=0 && filteredold.length === 1) {
+			me.gotToPage(me.pageIndex.indexOf(filteredold[0]));
+			return;
+		}
+		for(var k =0; k < filteredold.length; k++) {
+			if(filteredold[k] && filteredold[k][index] < pageIndex[index] && filteredold[k+1] && filteredold[k+1][index] > pageIndex[index]) {
+				me.gotToPage(me.pageIndex.indexOf(filteredold[k]));
+				break;
+			}
+		}
+    };
+
+    this.setPage = function() {
+    	me.$container.next().find('.page-counter span').html(me.current_page_number + "/"+ me.total_pages);
+        var w= - me.columnWidth*(me.current_page_number-1);
+    	me.$container.css({
+            "-webkit-transform": "translate3d("+w+"px, 0, 0)",
+            "transform": "translate3d("+w+"px, 0, 0)"
+        });
+    }
+
 	this.isEndReach = function (){
 		return me.current_page_number === me.total_pages;
 	};
@@ -159,5 +225,41 @@ jsfm.PageCreater = function (me) {
 	this.decreasePage = function (){
 		me.current_page_number--;
 	};
+
+	this.goToNextPage = function (){
+        setTransformValue ("-");
+    };
+
+    function setTransformValue (operator) {
+        switch(operator) {
+            case "+" :{
+                if(me.isFirstPage()) {
+                    return;
+                }
+                break;
+            }
+            case "-" : {
+                if(me.isEndReach()) {
+                    return;
+                }
+                break;
+            }
+        }
+        switch(operator) {
+            case "+" :{
+                me.decreasePage();
+                break;
+            }
+            case "-" : {
+                me.increasePage();
+                break;
+            }
+        }
+        me.setPage();
+    }
+
+     this.goToPrevPage = function (){
+       setTransformValue ("+");
+    };
 
 };

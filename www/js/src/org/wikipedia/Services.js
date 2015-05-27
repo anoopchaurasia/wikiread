@@ -34,7 +34,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 		var options = {
 			action: "parse",
 			page: term,
-			prop: sections,
+			prop: "sections",
 			format: me.format
 		}
 		Server.get(options, me.url, function(result){
@@ -52,7 +52,11 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 			format: me.format
 		}
 		Server.get(options, me.url, function(result){
-			cb && cb(new SectionContent(result));
+			var temp = new SectionContent(result);
+			if(temp.redirectPage){
+				return false;
+			}
+			cb && cb(temp);
 		}, ecb);
 	};
 });

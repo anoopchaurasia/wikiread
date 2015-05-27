@@ -27,7 +27,12 @@ fm.Class("Starter", function (me, Server, Services, Router, Settings) {
 
 	this.Starter = function (){
 		me.services = new Services();
-		me.settings = new Settings();
+
+		var _settings = window.localStorage._settings;
+		if(_settings) {
+			_settings = JSON.parse(_settings);
+		}
+		me.settings = new Settings(_settings);
 		Starter.getInstance(me);
 		if(!window.localStorage){
 			window.localStorage = {};

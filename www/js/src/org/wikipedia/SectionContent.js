@@ -3,8 +3,13 @@ fm.Include('lib.wiky');
 fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 
 	this.SectionContent = function (unformateddata){
-		var data = unformateddata.query.pages[19379].revisions[0]["*"];
-		this.formatedData = InstaView.convert(removeAllBracket(data).replace(/{{(.*?)}}/g, ""));
+		var data = unformateddata.query.pages[Object.keys(unformateddata.query.pages)[0]].revisions[0]["*"];
+		var parsedData = wtf_wikipedia.parse(data);
+		if(parsedData.type==="redirect") {
+			Starter.load('article/'+ parsedData.redirect);
+			this.redirectPage = true;
+		}
+		this.formatedData = wtf_wikipedia.parseToPlain(parsedData)//.replace(/{{(.*?)}}/g, ""));
 	}
 
 	function removeAllBracket (data){
