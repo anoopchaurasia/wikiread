@@ -1,5 +1,6 @@
 fm.Package("jsfm");
 fm.AbstractClass("Page", function (me) {
+	'use strict';
 	this.setMe = function (_me) {
 		me = _me;
 	};

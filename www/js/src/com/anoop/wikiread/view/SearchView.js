@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.view');
 fm.Class('SearchView> com.anoop.wikiread.view.View', function(me){ this.setMe = function(_me){me=_me};
-
+  'use strict';
   var instance;
   Static.getInstance = function() {
     if(!instance) {
@@ -29,7 +29,7 @@ fm.Class('SearchView> com.anoop.wikiread.view.View', function(me){ this.setMe = 
           {item.key}
         </li>
     });
-    return <ul class="table-view" style="background:#fff;">
+    return <ul class="table-view" style="background:#fff;border:none">
       {list.length ?list: me.getInstruction()}
     </ul>
   };
@@ -51,13 +51,15 @@ fm.Class('SearchView> com.anoop.wikiread.view.View', function(me){ this.setMe = 
         <div  class="content" style="background:#fff;padding-top:57px">
             <div config={me.attachComponent} ctrl={ctrl} view={me.listView}>
             </div>
-            <div class="article-of-date">
-              Article of the day
-            </div>
-            <div class="history">
-              history
-            </div>
         </div>
+        <nav class="bar bar-tab" style="margin:0">
+          <div class="article-of-date tab-item">
+            Article of the day
+          </div>
+          <div class="history tab-item">
+            history
+          </div>
+      </nav>
         <div class="clearfix"></div>
     </div>
 

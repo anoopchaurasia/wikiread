@@ -12,11 +12,11 @@ jsfm.Utility = function (me) {
     this.setMe = function (_me) {
         me = _me;
     };
-    Static.getInt = function (a) {
+    Static.getInt = function (a, deft) {
         if (a) {
             return parseInt(a, 10);
         }
-        return 0;
+        return deft || 0;
     };
 
     Static.daysBetween = function (date1, date2) {

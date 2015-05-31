@@ -1,7 +1,7 @@
 fm.Package("org.wikipedia");
 fm.Include('lib.wiky');
 fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
-
+	'use strict';
 	this.SectionContent = function (term){
 		this.sectionListData = [];
 		this.term = term;

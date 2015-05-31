@@ -112,7 +112,7 @@ p {
 }
 
 .view.settings > *{
-	padding: 10px;
+	padding: 5px;
 }
 
 .view.settings .demoRedraw div {
@@ -129,7 +129,7 @@ p {
 
 .settings-selection a{
 	display: table-cell;
-	padding: 10px;
+	padding: 5px 10px;
 }
 
 .settings-selection a div{
@@ -195,6 +195,7 @@ p {
 	position: absolute;
 	color:white;
 	right:0;
+	border-left: 1px solid #ccc;
 }
 
 #sectionlist .head, #historyList .head {
@@ -266,6 +267,17 @@ a {
     background-color: #FFF;
     margin-top: 10px;
     padding-right: 10px
+}
+
+.custom-checkbox.fa {
+    font-size: 29px!important;
+    color: inherit;
+    margin-right: 5px;
+    margin-left: 10px;
+    vertical-align: middle;
+    display: inline-block;
+    width: 30px;
+    text-align: left
 }
 
 
@@ -348,14 +360,6 @@ h6, h5, h4, h3, h2, h1 {
 .history, .type-instruction, .article-of-date {
 	text-align: center;
 	line-height: 44px;
-	box-shadow: 0px 0px 4px 1px #ccc;
-	margin: 10px;
-	background-color: white;
-}
-
-.history, .article-of-date {
-	float: left;
-	padding: 0 20px;
 }
 
 .type-instruction {
@@ -364,3 +368,9 @@ h6, h5, h4, h3, h2, h1 {
 	box-shadow: none;
 	border: none;
 }
+
+.font-selection a {
+  width: 19%;
+}
+
+

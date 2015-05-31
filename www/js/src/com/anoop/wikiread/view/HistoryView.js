@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.view');
 fm.Class('HistoryView> com.anoop.wikiread.view.View', function(me){ this.setMe = function(_me){me=_me};
-
+  'use strict';
   var instance;
   Static.getInstance = function() {
     if(!instance) {
@@ -16,7 +16,7 @@ fm.Class('HistoryView> com.anoop.wikiread.view.View', function(me){ this.setMe =
   };
 
    this.list = function (ctrl){
-    var l = ctrl.starter.history.items.map(function(s, index){
+    var l = ctrl.starter.history.items.reverse().map(function(s, index){
       return <li style="color:black; background:#fff" data-data={s} class="table-view-cell"> {s}</li>
     });
     return <ul class="table-view" style="color:black; background:#fff"> {l}</ul>

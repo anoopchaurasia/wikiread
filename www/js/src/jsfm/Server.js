@@ -62,7 +62,6 @@ jsfm.Server = function (me, SignUp) {
 		jQuery.ajax({
 			method: method,
 			url: url,
-			cache: false,
 			dataType: is_jsonp ? 'jsonp': null,
 			data: method === "GET" ? copy : JSON.stringify(copy),
 			headers: {

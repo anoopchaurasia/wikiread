@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.view');
 fm.AbstractClass('View', function(me){ this.setMe = function(_me){me=_me};
-
+	'use strict';
 	this.View = function (){
 		this.context = null;
 		this.events = [];

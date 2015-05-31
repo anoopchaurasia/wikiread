@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.view');
 fm.Class('ArticleView> com.anoop.wikiread.view.View', function(me){ this.setMe = function(_me){me=_me};
-
+  'use strict';
   var instance;
   Static.getInstance = function() {
     if(!instance) {
@@ -23,7 +23,7 @@ fm.Class('ArticleView> com.anoop.wikiread.view.View', function(me){ this.setMe =
       <div className="content" id="articleContainer"
         style={{"paddingBottom": ctrl.starter.settings.controllerHeight + "px", 'background': 'inherit'}}></div>
         <div className="controlles" style={{height: ctrl.starter.settings.controllerHeight + "px"}}>
-          <nav class="bar bar-tab" style="background: inherit; color: #777">
+          <nav class="bar bar-tab" style="background: inherit; color: #aaa">
             <a  class="tab-item search" style="color:inherit">
               <span class="fa fa-search" style="color:inherit"></span>
             </a>

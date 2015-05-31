@@ -1,6 +1,7 @@
 fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.SettingsView");
 fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', function(me, SettingsView){
+  'use strict';
   this.setMe = function(_me){me=_me};
 
   var instance;
@@ -19,6 +20,7 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     me.fontChangedDraw = null;
     me.textAlignChangeDraw = null;
     me.demoRedraw = null;
+    me.extraSettingsChangeDraw = null;
   };
 
   this.render = function () {
@@ -50,6 +52,12 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     me.settings.setTextAlignByIndex(index);
     me.demoRedraw();
     me.textAlignChangeDraw();
+  };
+
+  this.extraSettingsChange = function (e){
+    var key = e.currentTarget.dataset.type;
+    me.starter.settings.setValueByKey(key, !me.starter.settings[key]);
+    me.extraSettingsChangeDraw();
   };
 
   this.onDestroy = function (){

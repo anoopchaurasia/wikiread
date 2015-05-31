@@ -1,6 +1,6 @@
 fm.Package("jsfm");
 fm.Class("Swipe", function (me) { this.setMe = function (_me){me=_me};
-
+	'use strict';
 	Static.main = function (){
 		new me();
 	};
@@ -8,7 +8,13 @@ fm.Class("Swipe", function (me) { this.setMe = function (_me){me=_me};
 	this.Swipe = function () {
 		$(window).on('touchstart', this.touchstart);
 		$(window).on('touchend', this.touchend);
+		$(window).on('taphold', function(e) {
+		    e.preventDefault();
+		    alert('taphold');
+		    return false;
+		});
 	};
+
 
 	function getDirection(x, y) {
 		    if (x === y) {
@@ -21,6 +27,8 @@ fm.Class("Swipe", function (me) { this.setMe = function (_me){me=_me};
 		    return 'y';
 		}
 
+
+
 	var startpoint;
 	this.touchstart = function (e) {
 		if(e.originalEvent.changedTouches && e.originalEvent.changedTouches.length){
@@ -29,6 +37,17 @@ fm.Class("Swipe", function (me) { this.setMe = function (_me){me=_me};
 	};
 
 	this.touchend = function (e) {
+
+		if (window.getSelection) {
+          selection = window.getSelection();
+        } else if (document.selection) {
+          selection = document.selection.createRange();
+        }
+        if(selection.toString()) {
+        	//alert(selection.toString())
+        	selection.setPosition(0);
+        	return;
+        }
 		if(e.originalEvent.changedTouches && e.originalEvent.changedTouches.length){
 			var finalPositon = {x: e.originalEvent.changedTouches[0].pageX, y: e.originalEvent.changedTouches[0].pageY};
 			var x_diff = Math.abs(finalPositon.x - touchstart.x), y_diff = Math.abs(finalPositon.y - touchstart.y);

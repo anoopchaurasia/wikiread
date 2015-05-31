@@ -2,17 +2,22 @@
 <widget id="com.annop.wikiread" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>WikiRead</name>
     <description>
-        A application to help win ikipedia reading
+        A application to help wikipedia reading
     </description>
     <author email="anoop26667@gmail.com" href="http://eventz.io">
         Anoop Kumar Chaurasia
     </author>
-	<preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
 	<preference name="StatusBarBackgroundColor" value="#ffffff" />
 	<preference name="StatusBarStyle" value="lightcontent" />
-	<feature name="StatusBar">
-		<param name="ios-package" value="CDVStatusBar" onload="true" />
-	</feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="permissions" value="none"/>
     <content src="index.html" />
-    <access origin="http://en.wikipedia.org" />
+    <access origin="*" />
+    <allow-navigation href="*" />
 </widget>
+

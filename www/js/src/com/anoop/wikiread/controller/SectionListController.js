@@ -1,6 +1,7 @@
 fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.SectionListView");
 fm.Class('SectionListController> com.anoop.wikiread.controller.Controller', function(me, SectionListView){
+  'use strict';
   this.setMe = function(_me){me=_me};
 
   var instance;

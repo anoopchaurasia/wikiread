@@ -1,6 +1,7 @@
 fm.Package("com.anoop.wikiread.app");
-fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
-
+fm.Import("jsfm.Utility");
+fm.Class("Settings", function (me, Utility){  this.setMe = function(_me){me=_me};
+	'use strict';
 	this.init = function (){
 		Static.Const.colorcombos =[{
 			color: '#fff',
@@ -24,22 +25,23 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 			margin: {},
 			padding: {}
 		};
-		this.textAlign = settings.textAlign || me.textAligns[0];
+		me.disable_left_right_click = Utility.getBool(settings.disable_left_right_click, false);
+		this.textAlign =settings.textAlign || me.textAligns[0];
 		this.colorcombo = settings.colorcombo || me.colorcombos[0];
 		this.margin = {
-			top:settings.margin.top || 10,
-			bottom: settings.margin.bottom|| 10,
-			left:settings.margin.left|| 10,
-			right:settings.margin.right ||10
+			top:Utility.getInt(settings.margin.top, 10),
+			bottom: Utility.getInt(settings.margin.bottom, 10),
+			left:Utility.getInt(settings.margin.left, 10),
+			right:Utility.getInt(settings.margin.right, 10)
 		};
 
-		this.fontSize = settings.fontSize || me.fonts[1];
-		this.controllerHeight = settings.controllerHeight || 50;
+		this.fontSize = Utility.getInt(settings.fontSize, me.fonts[1]);
+		this.controllerHeight = Utility.getInt(settings.controllerHeight, 50);
 		this.padding = {
-			top: settings.padding.top || 10,
-			bottom: settings.padding.bottom ||  10 + this.controllerHeight,
-			left: settings.padding.left || 10,
-			right: settings.padding.right || 10
+			top: Utility.getInt(settings.padding.top, 10),
+			bottom: Utility.getInt(settings.padding.bottom, 10 + this.controllerHeight),
+			left: Utility.getInt(settings.padding.left, 10),
+			right: Utility.getInt(settings.padding.right, 10)
 		};
 	};
 
@@ -77,5 +79,13 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 
 	this.getColorStyle= function (){
 		return {color: me.colorcombo.color, background: me.colorcombo.background};
+	};
+
+	this.setValueByKey = function (key, value){
+		me[key] = value;
+	};
+
+	this.isChecked = function (key){
+		return me[key];
 	};
 });

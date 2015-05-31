@@ -5,7 +5,7 @@ fm.Import('org.wikipedia.SearchList');
 fm.Import('org.wikipedia.SectionList');
 fm.Import('org.wikipedia.SectionContent');
 fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, SectionContent) { this.setMe=function(_me) {me=_me};
-
+	'use strict';
 	this.init = function (){
 		Static.url = "http://en.wikipedia.org/w/api.php";
 		Static.format = "json";

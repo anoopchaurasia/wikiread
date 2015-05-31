@@ -3,6 +3,7 @@ fm.Import("com.anoop.wikiread.view.ArticleView");
 fm.Import("jsfm.PageCreater");
 fm.Import('jsfm.Swipe');
 fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function(me, ArticleView, PageCreater){
+  'use strict';
   this.setMe = function(_me){me=_me};
 
   var instance;
@@ -21,6 +22,7 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     this.currentContent = null;
     this.fillContent = new PageCreater(me.starter.settings);
     $(document).off('horizontal-scroll').on('horizontal-scroll', me.swipe);
+    $(document).off('custom-longpress').on('custom-longpress', me.longpress);
     $(document).on('keyup', me.handleKey);
     $(document).on('setting-changed', function (){
       me.fillContent.$container.css({
@@ -75,7 +77,7 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
     var style="color:"+me.starter.settings.colorcombo.color;
     style +=";background:"+ me.starter.settings.colorcombo.background;
-    $("<div id='goto' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='text'/><a class='btn large btn-primary'>GO</a></form></div>")
+    $("<div id='goto' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='number'/><a class='btn large btn-primary'>GO</a></form></div>")
     .appendTo(document.body).on('click', '.btn', function(){
       me.fillContent.gotToPage($(this).prev().val()-1);
       $("#goto").remove();
@@ -104,13 +106,9 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
 
   this.swipe = function (e, start, end, diff){
     if(diff > 0) {
-        if(me.fillContent.goToPrevPage() === false){
-          me.renderPrevSection();
-        }
+        me.goToPrevPage();
     } else {
-        if(me.fillContent.goToNextPage() === false){
-          me.renderNextSection();
-        }
+        me.goToNextPage();
     }
   };
 
@@ -119,30 +117,36 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
         me.renderNextSection();
     }
   };
+
+  this.goToPrevPage = function (e){
+    if(me.fillContent.goToPrevPage() === false){
+        me.renderPrevSection();
+    }
+  };
+
+  this.longpress = function (){
+    $(document.body).removeClass('noselect');
+  }
+
   this.handlePageClick = function (e){
+    if(me.starter.settings.disable_left_right_click) {
+      return;
+    }
     var target = e.currentTarget;
     var w = $(window).width();
     var offset= e.offsetX;
     if(offset - w/2  < -(w/2-30)){
-      if(me.fillContent.goToPrevPage() === false){
-        me.renderPrevSection();
-      }
+      me.goToPrevPage();
     } else if( offset-w/2 > (w/2-30)){
-      if(me.fillContent.goToNextPage() === false){
-        me.renderNextSection();
-      }
+      me.goToNextPage();
     }
   };
   this.handleKey = function(e) {
     if(e.which === 37){
-      if(me.fillContent.goToPrevPage() === false){
-        me.renderPrevSection();
-      }
+      me.goToPrevPage();
     }
     if(e.which === 39){
-      if(me.fillContent.goToNextPage() === false){
-        me.renderNextSection();
-      }
+      me.goToNextPage();
     }
   };
 });

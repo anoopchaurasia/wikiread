@@ -1,5 +1,6 @@
 fm.Package("com.anoop.wikiread.controller");
 fm.AbstractClass("Controller", function (me) {
+	'use strict';
 	this.setMe = function (_me) {
 		me = _me;
 	};

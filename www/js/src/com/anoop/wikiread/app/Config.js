@@ -1,5 +1,6 @@
 fm.Package("com.anoop.wikiread.app");
 fm.Interface("Config", function (){
+	'use strict';
 	this.proxy_server = 'http://localhost:8081/';
 	this.server = "http://52.10.221.103:4321/";
 	this.staging_server =  "http://52.10.221.103:4321/"
