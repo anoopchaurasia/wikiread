@@ -73,7 +73,9 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
       return;
     }
     var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
-    $("<div id='goto'><form><input placeholder='"+placeholder+"'' type='text'/><a class='btn btn-primary'>GO</a></form></div>")
+    var style="color:"+me.starter.settings.colorcombo.color;
+    style +=";background:"+ me.starter.settings.colorcombo.background;
+    $("<div id='goto' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='text'/><a class='btn large btn-primary'>GO</a></form></div>")
     .appendTo(document.body).on('click', '.btn', function(){
       me.fillContent.gotToPage($(this).prev().val()-1);
       $("#goto").remove();
@@ -91,7 +93,6 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     fm.Include('com.anoop.wikiread.controller.SectionListController', function(){
       new com.anoop.wikiread.controller.SectionListController(me, me.term, me.sectionContent).render();
     });
-
   };
 
   this.renderNextSection = function () {
@@ -110,6 +111,26 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
         if(me.fillContent.goToNextPage() === false){
           me.renderNextSection();
         }
+    }
+  };
+
+  this.goToNextPage = function (e){
+    if(me.fillContent.goToNextPage() === false){
+        me.renderNextSection();
+    }
+  };
+  this.handlePageClick = function (e){
+    var target = e.currentTarget;
+    var w = $(window).width();
+    var offset= e.offsetX;
+    if(offset - w/2  < -(w/2-30)){
+      if(me.fillContent.goToPrevPage() === false){
+        me.renderPrevSection();
+      }
+    } else if( offset-w/2 > (w/2-30)){
+      if(me.fillContent.goToNextPage() === false){
+        me.renderNextSection();
+      }
     }
   };
   this.handleKey = function(e) {

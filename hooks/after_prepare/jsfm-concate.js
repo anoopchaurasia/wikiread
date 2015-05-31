@@ -436,7 +436,7 @@ function generateTemplate(dir, generatedDir) {
 
 function jsManage() {
 	foldersToProcess.forEach(function(folder) {
-		var configdir = path.join(platformPath, folder, "com/anoop/wikiread/app/Config.js");
+		var configdir = path.join(platformPath, folder, "src/com/anoop/wikiread/app/Config.js");
 		var data = fs.readFileSync(configdir).toString('utf-8');
 		data = data.replace("{{APP_VERSION}}", appVersion)
 			.replace("\"{{BROWSER_TESTING}}\"", (platform === 'browser' && process.env.BROWSER_TESTING) || false);
@@ -480,4 +480,4 @@ function copyOnBoardingImages() {
 	  console.log('success!')
 	})
 }
-copyOnBoardingImages();
+//copyOnBoardingImages();

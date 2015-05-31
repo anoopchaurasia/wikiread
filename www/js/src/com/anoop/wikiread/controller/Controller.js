@@ -40,6 +40,7 @@ fm.AbstractClass("Controller", function (me) {
         if(me.sub.onScrollEnd) {
         	bindScroll();
         }
+        me.sub.afterRender && me.sub.afterRender(me.$el);
 	}
 
 	function bindScroll() {
@@ -60,17 +61,15 @@ fm.AbstractClass("Controller", function (me) {
 	this.renderOverlay = function (cb, data){
 		me.render(function(){
 			cb && cb.apply(this, arguments);
-	        me.sub.afterRender && me.sub.afterRender(me.$el);
 	        var slideFrom = me.sub.slide_from || "top";
 	        me.slider.slidePageFrom(me.$el, slideFrom, true);
 		}, data);
 	};
 
-	this.remove = function (html){
+	this.remove = function (){
 		if(me.destroyed) {
 			return;
 		}
-		$(html).off();
 		var slideFrom = me.sub.slide_from == "bottom" ? "top" : "bottom";
 		me.slider.slidePageFrom($('body >div.page:first'), slideFrom, undefined, true);
 		me.destroy();

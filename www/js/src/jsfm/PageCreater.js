@@ -231,6 +231,8 @@ jsfm.PageCreater = function (me) {
 
     this.setPage = function() {
     	me.$container.next().find('.page-counter span').html(me.current_page_number + "/"+ me.total_pages);
+        var current = $(me.$container[0].childNodes[me.current_page_number - 1])
+        current.addClass('selected').siblings('.selected').removeClass('selected');
         var w= - me.columnWidth*(me.current_page_number-1);
     	me.$container.css({
             "-webkit-transform": "translate3d("+w+"px, 0, 0)",

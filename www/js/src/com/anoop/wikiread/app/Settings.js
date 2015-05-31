@@ -4,15 +4,15 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 	this.init = function (){
 		Static.Const.colorcombos =[{
 			color: '#fff',
-			text: "White",
+			text: "Black",
 			background: '#000'
 		}, {
-  			color: "rgb(132, 114, 91)",
-  			text : "grey",
+  			color: "#6D683E",
+  			text : "Sepia",
 			background: "#DBD9C1"
 		},{
 			color: "#000",
-			text: "black",
+			text: "White",
 			background: '#fff'
 		}];
 		Static.Const.fonts = [16, 20, 26, 32];
@@ -73,5 +73,9 @@ fm.Class("Settings", function (){  this.setMe = function(_me){me=_me};
 
 	this.save = function (){
 		window.localStorage._settings = JSON.stringify(me.serialize());
+	};
+
+	this.getColorStyle= function (){
+		return {color: me.colorcombo.color, background: me.colorcombo.background};
 	};
 });

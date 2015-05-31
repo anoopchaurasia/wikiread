@@ -15,6 +15,7 @@ fm.Class('ArticleView> com.anoop.wikiread.view.View', function(me){ this.setMe =
     this.events.push(['click', '.page-counter', 'gotoPage']);
     this.events.push(['click', '.sections', 'openSections']);
     this.events.push(['click', '.search', 'searchPage']);
+    this.events.push(['click', '.parent', 'handlePageClick']);
   };
 
   this.view = function (ctrl){

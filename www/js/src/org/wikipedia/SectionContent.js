@@ -2,8 +2,9 @@ fm.Package("org.wikipedia");
 fm.Include('lib.wiky');
 fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 
-	this.SectionContent = function (){
+	this.SectionContent = function (term){
 		this.sectionListData = [];
+		this.term = term;
 		this.formatedData = null;
 		this.sectionWiseData = null;
 	}
@@ -32,11 +33,18 @@ fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 			sectionWiseData.push({title:data[i],data: data[i+1]});
 		};
 		me.sectionWiseData = sectionWiseData;
-		this.formatedData = "<h3>"+ sectionWiseData[0].title+"</h3>"+ sectionWiseData[0].data;
+		setFormatedDat(0, "<h3>"+ me.term +"</h3>");
 	}
 
+	function setFormatedDat(index, head){
+		me.formatedData = (head || "<h3>"+ me.sectionWiseData[index].title+"</h3>")+ me.sectionWiseData[index].data;
+		if(index < me.sectionWiseData.length-1) {
+			me.formatedData += "<swiperight class='swipe-right-open-section'>Swipe right to open next Section</swiperight>"
+		}
+	};
+
 	this.setIndex = function (index){
-		this.formatedData = "<h3>"+ me.sectionWiseData[index].title+"</h3>"+ me.sectionWiseData[index].data;
+		setFormatedDat(index);
 	};
 
 	function removeAllBracket (data){

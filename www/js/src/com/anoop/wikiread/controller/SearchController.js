@@ -25,10 +25,34 @@ fm.Class('SearchController> com.anoop.wikiread.controller.Controller', function(
     });
   };
 
+  this.afterRender = function (){
+    // fm.Include("com.anoop.intro.SearchIntro", function(){
+    //   var intro = new com.anoop.intro.SearchIntro();
+    //   intro.draw();
+    // });
+  };
+
   this.showTerm = function (e){
-    me.starter.services.resolveRedirect(e.currentTarget.dataset.term, function(redirect_term){
+    me.searchForTerm(e.currentTarget.dataset.term);
+  };
+
+  this.openHistory = function () {
+    fm.Include('com.anoop.wikiread.controller.HistoryController', function(){
+      new com.anoop.wikiread.controller.HistoryController(me).render();
+    });
+  };
+
+  this.searchForTerm = function(str) {
+    me.starter.services.resolveRedirect(str, function(redirect_term){
+      me.starter.history.add(redirect_term);
       me.starter.load("article/"+ redirect_term);
     });
   };
 
+  this.showTodaysArticle = function (){
+    me.starter.services.feturedArticle(function(redirect_term){
+      me.starter.history.add(redirect_term);
+      me.starter.load("article/"+ redirect_term);
+    });
+  };
 });

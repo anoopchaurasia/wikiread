@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+return
 var fs = require('fs');
 var path = require('path');
 var UglifyJS = require('cordova-minify/node_modules/uglify-js');

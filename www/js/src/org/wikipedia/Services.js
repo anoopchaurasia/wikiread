@@ -66,7 +66,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 			,format: me.format
 		}
 		Server.get(options, me.url, function(result){
-			debugger;
+			cb($($($(result).find('item:last description').text())[2]).find("a:first")[0].title)
 		}, ecb);
 	}
 
@@ -79,7 +79,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 			format: me.format
 		}
 		Server.get(options, me.url, function(result){
-			var temp = new SectionContent();
+			var temp = new SectionContent(term);
 			if(temp.redirectPage){
 				return false;
 			}

@@ -16,7 +16,8 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     this.settings = me.starter.settings;
     this.slide_from = "bottom";
     me.colorChangedDraw = null;
-    me.fontChangeDraw = null;
+    me.fontChangedDraw = null;
+    me.textAlignChangeDraw = null;
     me.demoRedraw = null;
   };
 
@@ -32,6 +33,7 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     var index = e.currentTarget.dataset.index;
     me.settings.setColorByIndex(index);
     me.demoRedraw();
+    me.colorChangedDraw();
     return false;
   };
 
@@ -39,6 +41,7 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     var index = e.currentTarget.dataset.index;
     me.settings.setFontByIndex(index);
     me.demoRedraw();
+    me.fontChangedDraw();
     return false;
   };
 
@@ -46,6 +49,7 @@ fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', functio
     var index = e.currentTarget.dataset.index;
     me.settings.setTextAlignByIndex(index);
     me.demoRedraw();
+    me.textAlignChangeDraw();
   };
 
   this.onDestroy = function (){

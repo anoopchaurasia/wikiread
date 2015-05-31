@@ -14,5 +14,5 @@
 		<param name="ios-package" value="CDVStatusBar" onload="true" />
 	</feature>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="http://en.wikipedia.org" />
 </widget>

@@ -2,8 +2,9 @@ fm.Package('');
 fm.Import("jsfm.Server");
 fm.Import("org.wikipedia.Services");
 fm.Import("com.anoop.wikiread.Router");
+fm.Import("com.anoop.wikiread.app.History1");
 fm.Import("com.anoop.wikiread.app.Settings");
-fm.Class("Starter", function (me, Server, Services, Router, Settings) {
+fm.Class("Starter", function (me, Server, Services, Router, History1, Settings) {
 	'use strict';
 
 	this.setMe = function (_me){
@@ -27,7 +28,7 @@ fm.Class("Starter", function (me, Server, Services, Router, Settings) {
 
 	this.Starter = function (){
 		me.services = new Services();
-
+		me.history = new History1();
 		var _settings = window.localStorage._settings;
 		if(_settings) {
 			_settings = JSON.parse(_settings);
