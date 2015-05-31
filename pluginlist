@@ -1,0 +1,6 @@
+cordova-plugin-whitelist 1.0.1-dev "Whitelist"
+org.apache.cordova.console 0.2.13 "Console"
+org.apache.cordova.dialogs 0.3.0 "Notification"
+org.apache.cordova.geolocation 0.3.12 "Geolocation"
+org.apache.cordova.network-information 0.2.15 "Network Information"
+org.apache.cordova.statusbar 0.1.10 "StatusBar"
