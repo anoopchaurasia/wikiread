@@ -24,16 +24,16 @@ fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 		data = data.replace(/=====(.*?)=====|====(.*?)====|===(.*?)===/g, function(a, b, c){
 			var len = (a.split("=").length+1)/2;
 			var r = new RegExp("={"+(len-1)+"}","");
-			return a.replace(r, "<h"+len+">").replace(r, "</h"+len+">");
+			return a.replace(r, "<h"+len+">").replace(r, "</h"+len+">").trim().replace(/Edit$/, "");
 		}).split(/==(.*?)\s==\s/g).filter(function(data){
 			return data !== undefined;
 		});
-		var sectionWiseData = [{data: data[0], title:"introduction"}];
+		var sectionWiseData = [{data: data[0], title: me.term}];
 		for (var i = 1; i < data.length; i=i+2) {
-			sectionWiseData.push({title:data[i],data: data[i+1]});
+			sectionWiseData.push({title:data[i].trim().replace(/Edit$/, ""),data: data[i+1]});
 		};
 		me.sectionWiseData = sectionWiseData;
-		setFormatedDat(0, "<h3>"+ me.term +"</h3>");
+		setFormatedDat(0);
 	}
 
 	function setFormatedDat(index, head){

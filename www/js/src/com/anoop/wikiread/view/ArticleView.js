@@ -1,5 +1,5 @@
 fm.Package('com.anoop.wikiread.view');
-fm.Class('ArticleView> com.anoop.wikiread.view.View', function(me){ this.setMe = function(_me){me=_me};
+fm.Class('ArticleView> jsfm.View', function(me){ this.setMe = function(_me){me=_me};
   'use strict';
   var instance;
   Static.getInstance = function() {

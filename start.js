@@ -10,17 +10,16 @@ fs = require("fs");
 var cnst;
 function watch(path) {
 	console.log(path);
-	fs.watch(path, function (){
-		clearTimeout(cnst);
-		cnst = setTimeout(function (){
-			exec("cordova build browser", puts);
-		}, 3000);
-	});
+	// fs.watch(path, function (){
+	// 	clearTimeout(cnst);
+	// 	cnst = setTimeout(function (){
+	// 		exec("cordova build browser", puts);
+	// 	}, 3000);
+	// });
 }
+__dirname = process.cwd();
 watch(__dirname + "/www/css");
-watch(__dirname + "/www/js");
-//watch(__dirname + "/www/js/src/com/feedly");
-watch(__dirname + "/www");
-watch(__dirname + "/www/js/src/jsfm");
-exec("cordova build browser", puts);
+watch(__dirname + "/www/js/src/com/anoop/wikiread/view");
+watch(__dirname + "/www/js/src/com/anoop/wikiread/controller");
+//watch(__dirname + "/www/js/src/jsfm");
 exec("cordova serve", puts);

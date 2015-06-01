@@ -1,4 +1,6 @@
 cordova-plugin-whitelist 1.0.1-dev "Whitelist"
+it.mobimentum.phonegapspinnerplugin 1.2.1 "SpinnerPlugin"
+nl.x-services.plugins.insomnia 4.0.1 "Insomnia (prevent screen sleep)"
 org.apache.cordova.console 0.2.13 "Console"
 org.apache.cordova.dialogs 0.3.0 "Notification"
 org.apache.cordova.geolocation 0.3.12 "Geolocation"

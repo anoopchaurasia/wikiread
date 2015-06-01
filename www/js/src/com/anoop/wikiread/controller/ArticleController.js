@@ -31,8 +31,12 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
       });
       var indexPage = me.fillContent.getCurrentPageIndex();
       me.reRender();
+
+      plugin.Spinner.getInstance().show();
       me.fillContent.start(undefined, function(){
         me.fillContent.gotToPageIndex(indexPage);
+
+      plugin.Spinner.getInstance().hide();
       });
     });
   };
@@ -44,17 +48,28 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
       me.currentSectionIndex = parseInt(index);
       me.sectionContent.setIndex(index);
       me.fillContent.reset();
-      me.fillContent.start(me.sectionContent.formatedData);
+
+      plugin.Spinner.getInstance().show();
+      me.fillContent.start(me.sectionContent.formatedData, function(){
+
+      plugin.Spinner.getInstance().hide();
+      });
     // me.starter.services.getSectionByNumber(me.term, index, function (sectionContent){
     // });
   };
 
   this.render = function (cb){
+    window.plugins.insomnia.keepAwake();
+    plugin.FullScreen.getInstance().hide();
   	this.base.render(cb);
 
+      plugin.Spinner.getInstance().show();
   	me.starter.services.getZeroSection(me.term, function (sectionContent){
       me.sectionContent = sectionContent;
-  		me.fillContent.start(sectionContent.formatedData);
+  		me.fillContent.start(sectionContent.formatedData, function(){
+
+      plugin.Spinner.getInstance().hide();
+      });
   	});
   };
 
@@ -139,6 +154,11 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
       me.goToPrevPage();
     } else if( offset-w/2 > (w/2-30)){
       me.goToNextPage();
+    } else {
+      plugin.FullScreen.getInstance().show();
+      setTimeout(function(){
+        plugin.FullScreen.getInstance().hide();
+      }, 2000);
     }
   };
   this.handleKey = function(e) {
@@ -148,5 +168,10 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     if(e.which === 39){
       me.goToNextPage();
     }
+  };
+
+  this.onDestroy = function (){
+    plugin.FullScreen.getInstance().show();
+    window.plugins.insomnia.allowSleepAgain();
   };
 });

@@ -4,6 +4,8 @@ fm.Import("org.wikipedia.Services");
 fm.Import("com.anoop.wikiread.Router");
 fm.Import("com.anoop.wikiread.app.History1");
 fm.Import("com.anoop.wikiread.app.Settings");
+fm.Import("plugin.Spinner");
+fm.Import("plugin.FullScreen");
 fm.Class("Starter", function (me, Server, Services, Router, History1, Settings) {
 	'use strict';
 

@@ -71,13 +71,13 @@ jsfm.PageCreater = function (me) {
         	alert("Sorry! Something not working");
         	return;
         }
-        me.$container.width((me.total_pages+ 1) * me.columnWidth);
+        me.$container.width((me.total_pages+ 4) * me.columnWidth);
         var htmls = createParentTags();
         me.$container[0].appendChild(htmls[0]);
         me.setTimeOut = setTimeout (function () {
             truncateWithHeight(htmls[1], me.tagObj, columnRecursive, current_rendered_array);
             htmls[0].style.textAlign = me.settings.textAlign;
-        }, me.total_pages === 1? 300 : 100);
+        }, me.total_pages === 1? 200 : 10);
     }
 
     function createParentTags (articleHeight) {

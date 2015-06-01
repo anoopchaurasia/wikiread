@@ -1,6 +1,6 @@
 .s {
 	  overflow: hidden;
-	  line-height: 1.2em;
+	  line-height: 1.4em;
 	  padding: 10px;
 	  margin: 10px;
  }
@@ -240,18 +240,21 @@ p {
 	padding: 10px;
 	padding-bottom: 0;
 	position: relative;
+	width: 100%;
 }
 
 .search-cont i{
 	position: absolute;
-	top: 1.2em;
-	left: 1em;
+  	top: 1.22em;
+  	left: 1.2em;
+  	margin-left: 5%;
 }
 
 .search-cont input {
-	padding-left: 2em;
+  padding-left: 2em;
+  width: 90%;
+  margin-left: 5%;
 }
-
 
 aul.table-view {
     background-color: inherit;

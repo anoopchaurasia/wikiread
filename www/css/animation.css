@@ -1,0 +1,407 @@
+.loader,.loader:after,.loader:before {
+    border-radius: 50%
+}
+
+.loader:after,.loader:before {
+    position: absolute;
+    content: ''
+}
+
+.loader:before {
+  font-size: 5px;
+  width: 16.8px;
+  height: 31.8px;
+  background: #fafafa;
+  border-radius: 30.6px 0 0 30.6px;
+  top: -.9px;
+  left: -.9px;
+  -webkit-transform-origin: 15.6px 15.3px;
+  transform-origin: 5.2em 5.1em;
+  -webkit-animation: load2 2s infinite ease 1.5s;
+  animation: load2 2s infinite ease 1.5s;
+
+}
+
+.loader {
+ font-size: 5px;
+  text-indent: -99999em;
+  margin: 15px auto;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  box-shadow: inset 0 0 0 3px #0dcecb;
+
+}
+
+.loader:after {
+  font-size: 5px;
+  width: 16.8px;
+  height: 31.8px;
+  background: #fafafa;
+  border-radius: 0 30.6px 30.6px 0;
+  top: -.6px;
+  left: 15.6px;
+  -webkit-transform-origin: 0 15.3px;
+  transform-origin: 0 15.2px;
+  -webkit-animation: load2 2s infinite ease;
+  animation: load2 2s infinite ease;
+}
+
+@-webkit-keyframes load2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes load2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.text-lefttoright {
+    -webkit-animation: rightmove .25s ease-in-out;
+    animation: rightmove .25s ease-in-out;
+    width: 100%;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
+}
+
+.show-anim-x {
+    -webkit-animation: show-anim-ketf-x .25s ease-in-out;
+    animation: show-anim-ketf-x .25s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    visibility: visible!important
+}
+
+.hide-anim-x {
+    -webkit-animation: hide-anim-ketf-x .25s ease-in-out;
+    animation: hide-anim-ketf-x .25s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
+}
+
+.show-anim {
+    animation: show-anim-ketf .25s ease-in-out;
+    animation-fill-mode: forwards
+}
+
+.animation-listing {
+    -webkit-animation-name: animation-listing;
+    animation-name: animation-listing;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
+}
+
+.animation-listing.item-0 {
+    margin-left: 400px!important;
+    -webkit-animation-duration: .25s;
+    animation-duration: .25s
+}
+
+.animation-listing.item-1 {
+    margin-left: 420px!important;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s
+}
+
+.animation-listing.item-2 {
+    margin-left: 440px!important;
+    -webkit-animation-duration: .34s;
+    animation-duration: .34s
+}
+
+.animation-listing.item-3 {
+    margin-left: 460px!important;
+    -webkit-animation-duration: .37s;
+    animation-duration: .37s
+}
+
+.animation-listing.item-4 {
+    margin-left: 480px!important;
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s
+}
+
+.animation-listing.item-5 {
+    margin-left: 500px!important;
+    -webkit-animation-duration: .44s;
+    animation-duration: .44s
+}
+
+.animation-listing.item-6 {
+    margin-left: 520px!important;
+    -webkit-animation-duration: .48s;
+    animation-duration: .48s
+}
+
+.animation-listing.item-7 {
+    margin-left: 540px!important;
+    -webkit-animation-duration: .51s;
+    animation-duration: .51s
+}
+
+.animation-listing.item-8 {
+    margin-left: 560px!important;
+    -webkit-animation-duration: .55s;
+    animation-duration: .55s
+}
+
+.animation-listing.item-9 {
+    margin-left: 580px!important;
+    -webkit-animation-duration: .6s;
+    animation-duration: .6s
+}
+
+@-webkit-keyframes animation-listing {
+    100% {
+        margin-left: 2%
+    }
+}
+
+@keyframes animation-listing {
+    100% {
+        margin-left: 2%
+    }
+}
+
+.text-lefttoright.delay1 {
+    margin-left: -300px;
+    -webkit-animation-delay: .2s;
+    animation-delay: .2s
+}
+
+.text-lefttoright.delay2 {
+    margin-left: -300px;
+    -webkit-animation-delay: .25s;
+    animation-delay: .25s
+}
+
+.text-lefttoright.delay3 {
+    margin-left: -300px;
+    -webkit-animation-delay: .4s;
+    animation-delay: .4s
+}
+
+.text-lefttoright.delay4 {
+    margin-left: -300px;
+    -webkit-animation-delay: .5s;
+    animation-delay: .5s
+}
+
+@-webkit-keyframes rightmove {
+    0% {
+        margin-left: -300px
+    }
+
+    25% {
+        margin-left: -200px
+    }
+
+    50% {
+        margin-left: -100px
+    }
+
+    75% {
+        margin-left: -30px
+    }
+
+    100% {
+        margin-left: 0
+    }
+}
+
+@keyframes rightmove {
+    0% {
+        margin-left: -300px
+    }
+
+    25% {
+        margin-left: -200px
+    }
+
+    50% {
+        margin-left: -100px
+    }
+
+    75% {
+        margin-left: -30px
+    }
+
+    100% {
+        margin-left: 0
+    }
+}
+
+@-webkit-keyframes show-anim-ketf {
+
+    100% {
+        width: 80px
+    }
+}
+
+@keyframes show-anim-ketf {
+
+    100% {
+        width: 80px
+    }
+}
+
+@-webkit-keyframes hide-anim-ketf {
+    100% {
+        width: 0
+    }
+}
+
+@keyframes hide-anim-ketf {
+    100% {
+        width: 0
+    }
+}
+
+@-webkit-keyframes show-anim-ketf-x {
+    100% {
+        margin-right: 0
+    }
+}
+
+@keyframes show-anim-ketf-x {
+    100% {
+        margin-right: 0
+    }
+}
+
+@-webkit-keyframes hide-anim-ketf-x {
+    100% {
+        margin-right: -46px
+    }
+}
+
+@keyframes hide-anim-ketf-x {
+    100% {
+        margin-right: -46px
+    }
+}
+
+.rotate-page-show {
+    transform-origin: right;
+    -webkit-transform-origin: right;
+    -webkit-animation: rotate-page-show .25s ease-in-out;
+    animation: rotate-page-show .25s ease-in-out
+}
+
+.rotate-page-hide {
+    transform-origin: right;
+    -webkit-transform-origin: right;
+    -webkit-animation: rotate-page-hide .25s ease-in-out;
+    animation: rotate-page-hide .25s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
+}
+
+.hide-anim {
+    -webkit-animation: hide-anim-ketf .25s ease-in-out;
+    animation: hide-anim-ketf .25s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
+}
+
+@-webkit-keyframes select {
+    from {
+        background-color: #fff
+    }
+
+    to {
+        background-color: #0277bd
+    }
+}
+
+@keyframes select {
+    from {
+        background-color: #fff
+    }
+
+    to {
+        background-color: #0277bd
+    }
+}
+
+@-webkit-keyframes unselect {
+    from {
+        background-color: #0277bd
+    }
+}
+
+@keyframes unselect {
+    from {
+        background-color: #0277bd
+    }
+
+    to {
+        background-color: #fff
+    }
+}
+
+
+/*
+ *  Usage:
+ *
+ *    <div class="sk-spinner sk-spinner-three-bounce">
+ *      <div class="sk-bounce1"></div>
+ *      <div class="sk-bounce2"></div>
+ *      <div class="sk-bounce3"></div>
+ *    </div>
+ *
+ */
+.sk-spinner-three-bounce.sk-spinner {
+  margin: 0 auto;
+  width: 70px;
+  text-align: center; }
+.sk-spinner-three-bounce div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-threeBounceDelay 1.4s infinite ease-in-out;
+          animation: sk-threeBounceDelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both; }
+.sk-spinner-three-bounce .sk-bounce1 {
+  -webkit-animation-delay: -0.32s;
+          animation-delay: -0.32s; }
+.sk-spinner-three-bounce .sk-bounce2 {
+  -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s; }
+
+@-webkit-keyframes sk-threeBounceDelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes sk-threeBounceDelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
