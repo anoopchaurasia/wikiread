@@ -15,6 +15,12 @@ fm.Class('HistoryView> jsfm.View', function(me){ this.setMe = function(_me){me=_
     this.events.push(['click', '.cancel', 'remove']);
   };
 
+  this.getContainer = function (){
+    var container = this.base.getContainer();
+    container.style.background = "transparent";
+    return container;
+  };
+
    this.list = function (ctrl){
     var l = ctrl.starter.history.items.reverse().map(function(s, index){
       return <li style="color:black; background:#fff" data-data={s} class="table-view-cell"> {s}</li>

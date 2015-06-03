@@ -202,7 +202,7 @@ jsfm.PageCreater = function (me) {
     this.gotToPageIndex = function (pageIndex){
 		var index = pageIndex.length  -1;
 		index = index > 0 ? index : 0;
-		var filteredold, currentFiltered= me.pageIndex;
+		var filteredold = [], currentFiltered= me.pageIndex;
 		while(true) {
     		currentFiltered= currentFiltered.filter(function(item){
 			  return item[index] === pageIndex[index];

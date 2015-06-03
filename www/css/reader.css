@@ -170,9 +170,10 @@ p {
 	padding: 20px 10px;
 	background-color: #fff;
 	margin-top: 0;
+	max-height: 150px;
 	text-align: center;
 	box-shadow: 0 0 2px 2px #ccc;
-
+	z-index: 100000;
 }
 
 #sectionlist{
@@ -232,18 +233,22 @@ p {
 	padding-bottom: 0;
 	position: relative;
 	width: 100%;
+	height: 50px;
 }
 
 .search-cont i{
-	position: absolute;
-  	top: 1.22em;
-  	left: 1.2em;
-  	margin-left: 5%;
+  position: absolute;
+  top: 18px;
+  left: 3px;
+  display: inline-block;
+  margin-left: 5%;
 }
 
 .search-cont input {
   padding-left: 2em;
   width: 90%;
+  position: absolute;
+  left:0;
   margin-left: 5%;
 }
 
@@ -403,4 +408,31 @@ swiperight {
 .intro .swype-intro > .my-table-view.arrow {
 	margin-top: 50%;
 }
+
+#network-warning.init {
+    -webkit-transform: translate3d(0,100%,1px);
+    transform: translate3d(0,100%,0)
+}
+
+#network-warning {
+    top: 89%;
+    bottom: 0;
+    position: fixed;
+    z-index: 100000;
+    font-size: .8em;
+    height: 50px;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    display: table
+}
+
+#network-warning.keep-animation {
+    -webkit-transform: translate3d(0,0,1px);
+    transform: translate3d(0,0,0)
+}
+
 

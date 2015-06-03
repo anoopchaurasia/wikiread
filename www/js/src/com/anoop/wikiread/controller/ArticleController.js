@@ -101,8 +101,8 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
     var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
     var style="color:"+me.starter.settings.colorcombo.color;
     style +=";background:"+ me.starter.settings.colorcombo.background;
-    $("<div id='goto' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='number'/><a class='btn large btn-primary'>GO</a></form></div>")
-    .appendTo(document.body).on('click', '.btn', function(){
+    $("<div id='goto' class='page center' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='number'/><a class='btn large btn-primary'>GO</a></form></div>")
+    .prependTo(document.body).on('click', '.btn', function(){
       me.fillContent.gotToPage($(this).prev().val()-1);
       $("#goto").remove();
     }).on('keyup', 'input',function(){

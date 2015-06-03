@@ -15,6 +15,12 @@ fm.Class('SectionListView> jsfm.View', function(me){ this.setMe = function(_me){
     this.events.push(["click", '.cancel', 'remove']);
   };
 
+  this.getContainer = function (){
+    var container = this.base.getContainer();
+    container.id= "sectionlist";
+    return container;
+  };
+
   this.list = function (ctrl){
     var l = ctrl.sectionList.map(function(s, index){
       return <li style={ctrl.starter.settings.getColorStyle()} data-index={index} class={"table-view-cell"+ (ctrl.articleController.currentSectionIndex === index ? ' selected': "")}>{(index+1)}. {s.title}</li>
@@ -23,7 +29,7 @@ fm.Class('SectionListView> jsfm.View', function(me){ this.setMe = function(_me){
   };
 
   this.view = function(ctrl){
-    return <div id="sectionlist" >
+    return <div>
               <h3 class="bar-nav head" style={ctrl.starter.settings.getColorStyle()}>Sections</h3>
               <div  class="list" style={ctrl.starter.settings.getColorStyle()}>
                 {me.list(ctrl)}

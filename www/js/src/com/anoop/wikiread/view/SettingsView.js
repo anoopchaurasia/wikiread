@@ -67,8 +67,14 @@ fm.Class('SettingsView> jsfm.View', function(me){ this.setMe = function(_me){me=
       </ul>
   };
 
+  this.getContainer = function (){
+    var container = this.base.getContainer();
+    container.style.background= "transparent";
+    return container;
+  };
+
   this.view = function (ctrl){
-    return <div style="background: transparent">
+    return <div>
       <div class="view settings">
         <div config={me.attachComponent} view={me.demoView} ctrl={ctrl} redraw="demoRedraw" class="demoRedraw"></div>
         <div config={me.attachComponent} view={me.colorSelectionView} ctrl={ctrl} redraw="colorChangedDraw"></div>

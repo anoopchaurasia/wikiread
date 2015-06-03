@@ -18,6 +18,23 @@ fm.Class("Starter", function (me, Server, Services, Router, History1, Settings, 
 		new me();
 	};
 
+	function offlineCB () {
+		$('body').prepend("<div id='network-warning'><i class='fa-warning fa'></i> Unable to connect, Please check Network!! <i class='fa-close close fa pull-right' style='font-size:1.3em;margin-top:6px;'></i></div>");
+		var temp = $("#network-warning");
+		slider.slidePageFrom(temp, 'left', true);
+		setTimeout(function(){
+			temp.removeClass('page transition').addClass("keep-animation");
+		}, 250);
+		$(".close", temp).click(function(){
+			$("#network-warning").remove();
+		});
+	}
+
+	function onLine(){
+		$("#network-warning").remove();
+		Server.onNetConnect();
+	};
+
 	this.setToStorage = function(key, value){
 		DB.getInstance().setValues(key, value);
 		return sessionStorage.setItem(key, value);
@@ -45,6 +62,8 @@ fm.Class("Starter", function (me, Server, Services, Router, History1, Settings, 
 	};
 
 	this.Starter = function (){
+		document.addEventListener("online", onLine, false);
+		document.addEventListener("offline", offlineCB, false);
 		me.services = new Services();
 		me.history = new History1();
 		var _settings = window.localStorage._settings;

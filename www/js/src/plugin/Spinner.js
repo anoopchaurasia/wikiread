@@ -14,8 +14,8 @@ fm.Class("Spinner", function  (me) {
 		this.plugin = window.plugins.spinnerDialog;
 	};
 
-	this.show = function (){
-		me.plugin.show();
+	this.show = function (message){
+		me.plugin.show(null, message, true);
 	};
 
 	this.hide = function (){

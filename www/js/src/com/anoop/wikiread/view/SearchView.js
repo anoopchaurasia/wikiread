@@ -54,7 +54,7 @@ fm.Class('SearchView> jsfm.View', function(me){ this.setMe = function(_me){me=_m
   this.view = function (ctrl){
     return <div>
         <header class="bar bar-nav" style="height: 60px; border:none;">
-          <div class="title search-cont">
+          <div class="search-cont">
               <input
                 autocomplete="off"
                 placeholder="Search Wikipedia .... "
