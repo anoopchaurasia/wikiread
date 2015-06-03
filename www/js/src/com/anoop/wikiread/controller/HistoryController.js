@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.HistoryView");
-fm.Class('HistoryController> com.anoop.wikiread.controller.Controller', function(me, HistoryView){
+fm.Class('HistoryController> jsfm.Controller', function(me, HistoryView){
   'use strict';
   this.setMe = function(_me){me=_me};
 

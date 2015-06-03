@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.SettingsView");
-fm.Class('SettingsController> com.anoop.wikiread.controller.Controller', function(me, SettingsView){
+fm.Class('SettingsController> jsfm.Controller', function(me, SettingsView){
   'use strict';
   this.setMe = function(_me){me=_me};
 

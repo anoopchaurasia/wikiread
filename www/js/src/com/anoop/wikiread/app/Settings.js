@@ -4,17 +4,17 @@ fm.Class("Settings", function (me, Utility){  this.setMe = function(_me){me=_me}
 	'use strict';
 	this.init = function (){
 		Static.Const.colorcombos =[{
-			color: '#fff',
+			color: '#ffffff',
 			text: "Black",
-			background: '#000'
+			background: '#000000'
 		}, {
   			color: "#6D683E",
   			text : "Sepia",
 			background: "#DBD9C1"
 		},{
-			color: "#000",
+			color: "#000000",
 			text: "White",
-			background: '#fff'
+			background: '#ffffff'
 		}];
 		Static.Const.fonts = [16, 20, 26, 32];
 		Static.Const.textAligns = ['justify', 'left', 'right', 'center'];

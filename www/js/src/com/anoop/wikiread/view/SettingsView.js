@@ -76,7 +76,7 @@ fm.Class('SettingsView> jsfm.View', function(me){ this.setMe = function(_me){me=
         <div config={me.attachComponent} view={me.textAlignView} ctrl={ctrl} redraw="textAlignChangeDraw"></div>
         <div config={me.attachComponent} view={me.extraSettingsView} ctrl={ctrl} redraw="extraSettingsChangeDraw"></div>
         <div className="close">
-          <i className="fa fa-close"> </i>
+          <button className="btn btn large btn-primary"> Done </button>
         </div>
       </div>
     </div>

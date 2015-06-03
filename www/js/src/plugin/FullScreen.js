@@ -11,16 +11,25 @@ fm.Class("FullScreen", function  (me) {
 	};
 
 	this.FullScreen = function (){
-		this.plugin = window.AndroidFullScreen;
-		this.isImmersiveEnabled = this.plugin.isImmersiveModeSupported();
+		this.isSupported = cordova.platformId === 'android';
+		if(this.isSupported){
+			this.plugin = window.AndroidFullScreen;
+			this.isImmersiveEnabled = this.plugin.isImmersiveModeSupported();
+		}
 	};
 
-	this.show = function (){
-		me.plugin.showSystemUI(successFunction, errorFunction);
+	this.show = function (elem){
+		if(this.isSupported){
+			elem.show();
+			me.plugin.showSystemUI(successFunction, errorFunction);
+		}
 	};
 
-	this.hide = function (){
-		me.plugin.immersiveMode(successFunction, errorFunction);
+	this.hide = function (elem){
+		if(this.isSupported){
+			elem.hide();
+			me.plugin.immersiveMode(successFunction, errorFunction);
+		}
 	};
 
 	function successFunction(){

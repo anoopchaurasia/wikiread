@@ -2,7 +2,7 @@ fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.ArticleView");
 fm.Import("jsfm.PageCreater");
 fm.Import('jsfm.Swipe');
-fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function(me, ArticleView, PageCreater){
+fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCreater){
   'use strict';
   this.setMe = function(_me){me=_me};
 
@@ -20,6 +20,7 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     this.currentSectionIndex= 0;
     this.sectionContent = null;
     this.currentContent = null;
+    this.viewControllers = null;
     this.fillContent = new PageCreater(me.starter.settings);
     $(document).off('horizontal-scroll').on('horizontal-scroll', me.swipe);
     $(document).off('custom-longpress').on('custom-longpress', me.longpress);
@@ -34,6 +35,7 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
 
       plugin.Spinner.getInstance().show();
       me.fillContent.start(undefined, function(){
+        plugin.StatusBar.getInstance().changeColor(me.starter.settings.colorcombo);
         me.fillContent.gotToPageIndex(indexPage);
 
       plugin.Spinner.getInstance().hide();
@@ -51,8 +53,8 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
 
       plugin.Spinner.getInstance().show();
       me.fillContent.start(me.sectionContent.formatedData, function(){
-
-      plugin.Spinner.getInstance().hide();
+        plugin.StatusBar.getInstance().changeColor(me.starter.settings.colorcombo);
+        plugin.Spinner.getInstance().hide();
       });
     // me.starter.services.getSectionByNumber(me.term, index, function (sectionContent){
     // });
@@ -60,15 +62,22 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
 
   this.render = function (cb){
     window.plugins.insomnia.keepAwake();
-    plugin.FullScreen.getInstance().hide();
-  	this.base.render(cb);
-
-      plugin.Spinner.getInstance().show();
+    this.base.render(cb);
+    this.viewControllers = me.$el.find("#controlles");
+    plugin.FullScreen.getInstance().hide(me.viewControllers);
+    plugin.Spinner.getInstance().show();
   	me.starter.services.getZeroSection(me.term, function (sectionContent){
       me.sectionContent = sectionContent;
   		me.fillContent.start(sectionContent.formatedData, function(){
-
-      plugin.Spinner.getInstance().hide();
+        plugin.StatusBar.getInstance().changeColor(me.starter.settings.colorcombo);
+        if(!me.starter.getFromStorage('article_intro_done')){
+          fm.Include("com.anoop.intro.ArticleIntro", function(){
+            var v = new com.anoop.intro.ArticleIntro();
+            v.render();
+            me.starter.setToStorage('article_intro_done', true);
+          });
+        }
+        plugin.Spinner.getInstance().hide();
       });
   	});
   };
@@ -155,9 +164,9 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
     } else if( offset-w/2 > (w/2-30)){
       me.goToNextPage();
     } else {
-      plugin.FullScreen.getInstance().show();
+      plugin.FullScreen.getInstance().show(me.viewControllers);
       setTimeout(function(){
-        plugin.FullScreen.getInstance().hide();
+        plugin.FullScreen.getInstance().hide(me.viewControllers);
       }, 2000);
     }
   };
@@ -171,7 +180,7 @@ fm.Class('ArticleController> com.anoop.wikiread.controller.Controller', function
   };
 
   this.onDestroy = function (){
-    plugin.FullScreen.getInstance().show();
+    plugin.FullScreen.getInstance().show(me.viewControllers);
     window.plugins.insomnia.allowSleepAgain();
   };
 });

@@ -29,4 +29,12 @@ fm.AbstractClass('View', function(me){ this.setMe = function(_me){me=_me};
 	this.reset = function (){
 		cache = {};
 	};
+
+	this.getContainer = function (ctrl){
+		return document.createElement('div');
+	}
+
+	this.afterRender = function (){
+
+	};
 });

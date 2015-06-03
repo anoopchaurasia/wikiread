@@ -4,9 +4,11 @@ fm.Import("org.wikipedia.Services");
 fm.Import("com.anoop.wikiread.Router");
 fm.Import("com.anoop.wikiread.app.History1");
 fm.Import("com.anoop.wikiread.app.Settings");
+fm.Import("jsfm.DB");
 fm.Import("plugin.Spinner");
 fm.Import("plugin.FullScreen");
-fm.Class("Starter", function (me, Server, Services, Router, History1, Settings) {
+fm.Import("plugin.StatusBar");
+fm.Class("Starter", function (me, Server, Services, Router, History1, Settings, DB) {
 	'use strict';
 
 	this.setMe = function (_me){
@@ -14,6 +16,20 @@ fm.Class("Starter", function (me, Server, Services, Router, History1, Settings) 
 	};
 	Static.main = function (){
 		new me();
+	};
+
+	this.setToStorage = function(key, value){
+		DB.getInstance().setValues(key, value);
+		return sessionStorage.setItem(key, value);
+	};
+
+	this.getFromStorage = function (key){
+		return sessionStorage.getItem(key);
+	};
+
+	this.removeFromStorage = function(key){
+		DB.getInstance().removeKey(key);
+		return sessionStorage.removeItem(key);
 	};
 
 	var singleton;

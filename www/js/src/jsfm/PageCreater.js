@@ -5,7 +5,7 @@ jsfm.PageCreater = function (me) {
 
 	this.init = function (){
 		Static.setTimeOut = null;
-		Static.Const.multiplier = 18;
+		Static.Const.multiplier = 20;
 	};
 	this.setMe = function( _me ) {
 		me = _me;

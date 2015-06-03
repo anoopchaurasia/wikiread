@@ -161,16 +161,7 @@ p {
 }
 
 .view.settings .close {
-  width: 34px;
-  line-height: 31px;
   text-align: center;
-  padding: 0;
-  position: absolute;
-  background-color: rgb(210, 142, 142);
-  right: 0;
-  top: -30px;
-  border: 1px solid #ccc;
-  border-radius: 50%;
 }
 
 #goto {
@@ -376,4 +367,40 @@ h6, h5, h4, h3, h2, h1 {
   width: 19%;
 }
 
+.intro .colorlayer{
+	background-color: #fff;
+	opacity: .7;
+}
+
+.intro .intro-cont{
+	background-color: transparent;
+}
+
+.intro .bottom-intro {
+	position: absolute;
+	bottom: 40px;
+}
+
+swiperight {
+	color: blue;
+	display: block;
+}
+
+.my-table-view {
+	display: table;
+	width: 100%;
+}
+
+.my-table-view-cell {
+	display: table-cell;
+	text-align: center;
+}
+
+.intro .swype-intro{
+	width: 100%;
+}
+
+.intro .swype-intro > .my-table-view.arrow {
+	margin-top: 50%;
+}
 

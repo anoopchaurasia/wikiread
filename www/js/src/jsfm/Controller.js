@@ -1,4 +1,4 @@
-fm.Package("com.anoop.wikiread.controller");
+fm.Package("jsfm");
 fm.AbstractClass("Controller", function (me) {
 	'use strict';
 	this.setMe = function (_me) {
@@ -29,10 +29,11 @@ fm.AbstractClass("Controller", function (me) {
 		}
 		data = data || me.sub;
 		//if(!me.$el){
-			var d = document.createElement('div');
+			var d = data.viewClass.getContainer(data);
 	        m.render(d , {controller: function(){return data;}, view: data.viewClass.view});
-	        this.$el = me.removeWraper? $(d).children() : $(d);
-        	//document.body.appendChild(this.$el[0]);
+	        this.$el = $(d);
+        	//$(document.body).append(this.$el);
+        	data.viewClass.afterRender(this.$el);
 		//}
         cb && cb(this.$el);
         data.viewClass.events.forEach(function(event){

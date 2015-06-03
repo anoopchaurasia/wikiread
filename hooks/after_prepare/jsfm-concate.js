@@ -463,6 +463,10 @@ var command = "msx -x  js "+ path.join(platformPath, "js/src/com/anoop/wikiread"
 exec(command, function(a, b){
 	console.log(a,b);
 });
+var command = "msx -x  js "+ path.join(platformPath, "js/src/com/anoop/intro", "view")+ " " + path.join(platformPath, "js/src/com/anoop/intro","view");
+exec(command, function(a, b){
+	console.log(a,b);
+});
 
 jsManage();
 

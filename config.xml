@@ -8,7 +8,7 @@
         Anoop Kumar Chaurasia
     </author>
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarBackgroundColor" value="#ffffff" />
 	<preference name="StatusBarStyle" value="lightcontent" />
     <feature name="StatusBar">
@@ -18,6 +18,12 @@
     <preference name="permissions" value="none"/>
     <content src="index.html" />
     <access origin="*" />
+    <platform name="ios">
+        <icon src="res/logo.png"/>
+    </platform>
+    <platform name="android">
+        <icon src="res/logo.png"/>
+    </platform>
     <allow-navigation href="*" />
 </widget>
 

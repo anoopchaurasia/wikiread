@@ -1,6 +1,6 @@
 fm.Package('com.anoop.wikiread.controller');
 fm.Import("com.anoop.wikiread.view.SearchView");
-fm.Class('SearchController> com.anoop.wikiread.controller.Controller', function(me, SearcView ){
+fm.Class('SearchController> jsfm.Controller', function(me, SearcView ){
   'use strict';
   this.setMe = function(_me){me=_me};
 
@@ -47,7 +47,10 @@ fm.Class('SearchController> com.anoop.wikiread.controller.Controller', function(
   };
 
   this.afterRender = function (){
-    // fm.Include("com.anoop.intro.SearchIntro", function(){
+   plugin.StatusBar.getInstance().changeColor({
+    background: "#ffffff"
+   });
+       // fm.Include("com.anoop.intro.SearchIntro", function(){
     //   var intro = new com.anoop.intro.SearchIntro();
     //   intro.draw();
     // });
