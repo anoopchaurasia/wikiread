@@ -21,7 +21,7 @@ fm.Class('SearchController> jsfm.Controller', function(me, SearcView ){
     me.loaderRedraw = null;
   };
 
-  var currentSearchString;
+  var currentSearchString, setTimeConstant;
   this.search = function (e){
     me.no_data_loaded = false;
     var v = e.currentTarget.value.trim();
@@ -37,13 +37,16 @@ fm.Class('SearchController> jsfm.Controller', function(me, SearcView ){
     }
     me.loading = true;
     me.loaderRedraw();
-    me.starter.services.searchString(v, function (list){
-      me.list = list;
-      me.loading = false;
-      me.no_data_loaded = true;
-      me.redraw();
-      me.loaderRedraw();
-    });
+    clearTimeout(setTimeConstant);
+    setTimeConstant= setTimeout(function() {
+      me.starter.services.searchString(v, function (list){
+        me.list = list;
+        me.loading = false;
+        me.no_data_loaded = true;
+        me.redraw();
+        me.loaderRedraw();
+      });
+    }, 500);
   };
 
   this.afterRender = function (){

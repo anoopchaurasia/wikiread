@@ -99,14 +99,14 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
       return;
     }
     var placeholder = "type page from 1 to "+ me.fillContent.total_pages;
-    var style="color:"+me.starter.settings.colorcombo.color;
+    var style="";
     style +=";background:"+ me.starter.settings.colorcombo.background;
     $("<div id='goto' class='page center' style='"+style+"'><form><input placeholder='"+placeholder+"'' type='number'/><a class='btn large btn-primary'>GO</a></form></div>")
     .prependTo(document.body).on('click', '.btn', function(){
       me.fillContent.gotToPage($(this).prev().val()-1);
       $("#goto").remove();
-    }).on('keyup', 'input',function(){
-      if(this.value < 1 || this.value > me.fillContent.total_pages) {
+    }).on('keyup paste', 'input',function(){
+      if(!parseInt(this.value) || this.value < 1 || this.value > me.fillContent.total_pages) {
         this.value = "";
       }
     }).on('submit', 'form', function (){
