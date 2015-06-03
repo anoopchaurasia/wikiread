@@ -17,7 +17,7 @@ fm.Class('SectionListView> jsfm.View', function(me){ this.setMe = function(_me){
 
   this.getContainer = function (){
     var container = this.base.getContainer();
-    container.id= "sectionlist";
+    container.style.background="transparent";
     return container;
   };
 
@@ -29,7 +29,7 @@ fm.Class('SectionListView> jsfm.View', function(me){ this.setMe = function(_me){
   };
 
   this.view = function(ctrl){
-    return <div>
+    return <div id="sectionlist">
               <h3 class="bar-nav head" style={ctrl.starter.settings.getColorStyle()}>Sections</h3>
               <div  class="list" style={ctrl.starter.settings.getColorStyle()}>
                 {me.list(ctrl)}

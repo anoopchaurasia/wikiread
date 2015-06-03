@@ -23,7 +23,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 		};
 		Server.get(options, me.url, function(result){
 			cb && cb(new SearchList(result));
-		}, ecb);
+		}, ecb|| ecb_cb);
 	};
 
 	this.resolveRedirect = function (term, cb, ecb){
@@ -37,12 +37,17 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 			var temp = result.query.pages;
 			var term = temp[Object.keys(temp)[0]].title;
 			cb && cb(term);
-		}, ecb);
+		}, ecb||ecb_cb);
 	};
 
 	this.getZeroSection = function (term, cb){
 		return me.getSectionByNumber(term, 0, cb);
 	};
+
+	function ecb_cb (){
+		plugin.Spinner.getInstance().hide();
+		alert("Sorry, Not able to connect Wikipedia, Please try again");
+	}
 
 	this.getSectionList = function (term, cb, ecb) {
 		var options = {
@@ -53,7 +58,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 		}
 		Server.get(options, me.url, function(result){
 			cb && cb(new SectionList(result));
-		}, ecb);
+		}, ecb|| ecb_cb);
 	};
 
 	this.feturedArticle = function (cb ,ecb){
@@ -67,7 +72,7 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 		}
 		Server.get(options, me.url, function(result){
 			cb($($($(result).find('item:last description').text())[2]).find("a:first")[0].title)
-		}, ecb);
+		}, ecb|| ecb_cb);
 	}
 
 	this.getSectionByNumber = function (term, number, cb, ecb) {

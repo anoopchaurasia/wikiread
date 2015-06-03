@@ -363,9 +363,11 @@ h6, h5, h4, h3, h2, h1 {
 
 .type-instruction {
 	height: 100px;
-	margin-top: 1px;
+	margin-top: -7px;
 	box-shadow: none;
 	border: none;
+	text-align: left;
+	padding-left: 6%;
 }
 
 .font-selection a {
@@ -420,7 +422,7 @@ swiperight {
     position: fixed;
     z-index: 100000;
     font-size: .8em;
-    height: 50px;
+    line-height: 32px;
     right: 0;
     width: 100%;
     padding: 10px;
@@ -433,6 +435,12 @@ swiperight {
 #network-warning.keep-animation {
     -webkit-transform: translate3d(0,0,1px);
     transform: translate3d(0,0,0)
+}
+
+#network-warning .fa-close {
+	position: absolute;
+	top: 9px;
+	right: 2px;
 }
 
 

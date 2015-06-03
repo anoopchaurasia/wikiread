@@ -37,7 +37,7 @@ fm.Class("Starter", function (me, Server, Services, Router, History1, Settings, 
 
 	this.setToStorage = function(key, value){
 		DB.getInstance().setValues(key, value);
-		return sessionStorage.setItem(key, value);
+		sessionStorage.setItem(key, value);
 	};
 
 	this.getFromStorage = function (key){
@@ -62,6 +62,7 @@ fm.Class("Starter", function (me, Server, Services, Router, History1, Settings, 
 	};
 
 	this.Starter = function (){
+		DB.getInstance();
 		document.addEventListener("online", onLine, false);
 		document.addEventListener("offline", offlineCB, false);
 		me.services = new Services();

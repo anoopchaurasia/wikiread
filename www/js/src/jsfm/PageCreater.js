@@ -77,7 +77,7 @@ jsfm.PageCreater = function (me) {
         me.setTimeOut = setTimeout (function () {
             truncateWithHeight(htmls[1], me.tagObj, columnRecursive, current_rendered_array);
             htmls[0].style.textAlign = me.settings.textAlign;
-        }, me.total_pages === 1? 200 : 10);
+        }, me.total_pages === 1? 300 : 10);
     }
 
     function createParentTags (articleHeight) {
