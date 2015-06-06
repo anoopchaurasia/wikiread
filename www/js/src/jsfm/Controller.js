@@ -32,6 +32,9 @@ fm.AbstractClass("Controller", function (me) {
 			var d = data.viewClass.getContainer(data);
 	        m.render(d , {controller: function(){return data;}, view: data.viewClass.view});
 	        this.$el = $(d);
+	        me.$el.on('click', function (){
+	        	return false;
+	        })
         	//$(document.body).append(this.$el);
         	data.viewClass.afterRender(this.$el);
 		//}

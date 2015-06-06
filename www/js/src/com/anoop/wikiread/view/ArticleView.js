@@ -16,6 +16,7 @@ fm.Class('ArticleView> jsfm.View', function(me){ this.setMe = function(_me){me=_
     this.events.push(['click', '.sections', 'openSections']);
     this.events.push(['click', '.search', 'searchPage']);
     this.events.push(['click', '.parent', 'handlePageClick']);
+    this.events.push(['click', 'swiperight', 'goToNextPage']);
   };
 
   this.view = function (ctrl){

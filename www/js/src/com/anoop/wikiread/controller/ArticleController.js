@@ -37,8 +37,7 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
       me.fillContent.start(undefined, function(){
         plugin.StatusBar.getInstance().changeColor(me.starter.settings.colorcombo);
         me.fillContent.gotToPageIndex(indexPage);
-
-      plugin.Spinner.getInstance().hide();
+        plugin.Spinner.getInstance().hide();
       });
     });
   };

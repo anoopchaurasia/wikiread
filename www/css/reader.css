@@ -389,8 +389,10 @@ h6, h5, h4, h3, h2, h1 {
 }
 
 swiperight {
-	color: blue;
-	display: block;
+	color: inherit;
+	display: inline-block;
+	border-bottom: 1px dotted #555;
+	font-weight: bold;
 }
 
 .my-table-view {

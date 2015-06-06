@@ -39,7 +39,7 @@ fm.Class("SectionContent", function (me) { this.setMe=function(_me) {me=_me};
 	function setFormatedDat(index, head){
 		me.formatedData = (head || "<h3>"+ me.sectionWiseData[index].title+"</h3>")+ me.sectionWiseData[index].data;
 		if(index < me.sectionWiseData.length-1) {
-			me.formatedData += "<swiperight class='swipe-right-open-section'>Swipe right to open next Section</swiperight>"
+			me.formatedData += "<h6>Next: <swiperight>"+ me.sectionWiseData[index+1].title+"</swiperight></h6>"
 		}
 	};
 
