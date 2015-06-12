@@ -88,8 +88,13 @@ fm.Class("Services", function (me, Utility, Server, SearchList, SectionList, Sec
 			if(temp.redirectPage){
 				return false;
 			}
-			temp.extractFromExtract(result);
+			try{
+				temp.extractFromExtract(result);
+			} catch(e){
+				me.ecb_cb();
+				ecb && ecb();
+			}
 			cb(temp);
-		}, ecb);
+		}, ecb|| ecb_cb);
 	};
 });

@@ -20,11 +20,12 @@ fm.Class('ArticleView> jsfm.View', function(me){ this.setMe = function(_me){me=_
   };
 
   this.view = function (ctrl){
-    return <div style={{color: ctrl.starter.settings.colorcombo.color, background: ctrl.starter.settings.colorcombo.background, "minWidth": "100%", "minHeight": "100%"}}>
+    var settings = ctrl.starter.settings;
+    return <div style={{color: settings.colorcombo.color, background: settings.colorcombo.background, "minWidth": "100%", "minHeight": "100%"}}>
       <div className="content" id="articleContainer"
-        style={{"paddingBottom": ctrl.starter.settings.controllerHeight + "px", 'background': 'inherit', 'minWidth': "10000px"}}></div>
-        <div className="controlles" id="controlles" style={{height: ctrl.starter.settings.controllerHeight + "px"}}>
-          <nav class="bar bar-tab" style="background: inherit; color: #aaa">
+        style={{"paddingBottom": settings.controllerHeight + "px", 'background': 'inherit', 'minWidth': "10000px"}}></div>
+        <div className="controlles" id="controlles" style={{height: settings.controllerHeight + "px"}}>
+          <nav class="bar bar-tab" style={{"background": settings.colorcombo.background, color: "#aaa"}}>
             <a  class="tab-item search" style="color:inherit">
               <span class="fa fa-search" style="color:inherit"></span>
             </a>

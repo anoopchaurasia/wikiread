@@ -22,6 +22,11 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
     this.currentContent = null;
     this.viewControllers = null;
     this.fillContent = new PageCreater(me.starter.settings);
+    $(window).off("orientationchange").on("orientationchange", function(){
+      setTimeout(function(){
+        me.applyChange();
+      }, 300);
+    });
     $(document).off('horizontal-scroll').on('horizontal-scroll', me.swipe);
     $(document).off('custom-longpress').on('custom-longpress', me.longpress);
     $(document).on('keyup', me.handleKey);
@@ -30,7 +35,16 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
           "-webkit-transform": "translate3d(0, 0, 0)",
           "transform": "translate3d(0, 0, 0)"
       });
-      var indexPage = me.fillContent.getCurrentPageIndex();
+      me.applyChange();
+    });
+    me.starter.onBackButton(me.onBackButton);
+  };
+
+  this.onBackButton = function (){
+    history.back();
+  };
+  this.applyChange = function (){
+    var indexPage = me.fillContent.getCurrentPageIndex();
       me.reRender();
 
       plugin.Spinner.getInstance().show();
@@ -39,8 +53,7 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
         me.fillContent.gotToPageIndex(indexPage);
         plugin.Spinner.getInstance().hide();
       });
-    });
-  };
+  }
 
   this.openIndex = function (index){
     if(index < 0 || index >= me.sectionContent.sectionWiseData.length) {
@@ -88,7 +101,7 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
   };
 
   this.searchPage = function (){
-    me.starter.load('search');
+    Starter.onBackButton();
   };
 
   this.gotoPage = function (){

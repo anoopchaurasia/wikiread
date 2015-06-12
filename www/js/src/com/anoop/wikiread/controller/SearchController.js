@@ -53,11 +53,12 @@ fm.Class('SearchController> jsfm.Controller', function(me, SearcView ){
    plugin.StatusBar.getInstance().changeColor({
     background: "#ffffff"
    });
-       // fm.Include("com.anoop.intro.SearchIntro", function(){
-    //   var intro = new com.anoop.intro.SearchIntro();
-    //   intro.draw();
-    // });
   };
+
+  this.onBackButton = function (){
+    navigator.app.exitApp();
+  };
+
 
   this.showTerm = function (e){
     me.searchForTerm(e.currentTarget.dataset.term);

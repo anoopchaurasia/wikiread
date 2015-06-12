@@ -330,8 +330,9 @@ body .table-view .table-view-cell {
   background-image: none;
   margin: 2px 0px;
   border: none;
+  padding: 13px;
   box-shadow: none;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 h6 {
@@ -376,7 +377,7 @@ h6, h5, h4, h3, h2, h1 {
 
 .intro .colorlayer{
 	background-color: #fff;
-	opacity: .7;
+	opacity: .95;
 }
 
 .intro .intro-cont{

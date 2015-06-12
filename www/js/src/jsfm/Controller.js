@@ -17,6 +17,11 @@ fm.AbstractClass("Controller", function (me) {
 		this.$el = null;
 		this.removeWraper = removeWraper || false;
 		this.sub = this.getSub();
+		me.starter.onBackButton(me.sub.onBackButton || me.onBackButton);
+  	};
+
+	this.onBackButton = function (){
+		me.remove();
 	};
 
 	this.reRender = function (){
