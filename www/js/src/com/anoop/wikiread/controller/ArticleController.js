@@ -49,9 +49,9 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
 
       plugin.Spinner.getInstance().show();
       me.fillContent.start(undefined, function(){
+        plugin.Spinner.getInstance().hide();
         plugin.StatusBar.getInstance().changeColor(me.starter.settings.colorcombo);
         me.fillContent.gotToPageIndex(indexPage);
-        plugin.Spinner.getInstance().hide();
       });
   }
 
@@ -76,7 +76,7 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
     window.plugins.insomnia.keepAwake();
     this.base.render(cb);
     this.viewControllers = me.$el.find("#controlles");
-    plugin.FullScreen.getInstance().hide(me.viewControllers);
+    plugin.FullScreen.getInstance().hide();
     plugin.Spinner.getInstance().show();
   	me.starter.services.getZeroSection(me.term, function (sectionContent){
       me.sectionContent = sectionContent;
@@ -176,12 +176,26 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
     } else if( offset-w/2 > (w/2-30)){
       me.goToNextPage();
     } else {
-      plugin.FullScreen.getInstance().show(me.viewControllers);
-      setTimeout(function(){
-        plugin.FullScreen.getInstance().hide(me.viewControllers);
-      }, 2000);
+      showHideActionBar();
     }
   };
+
+  var setTimeoutConst, isActionBarVisible;
+  function showHideActionBar(){
+    clearTimeout(setTimeoutConst);
+    if(isActionBarVisible) {
+      plugin.FullScreen.getInstance().hide();
+      isActionBarVisible = false;
+      return;
+    }
+    plugin.FullScreen.getInstance().show();
+    isActionBarVisible = true;
+    setTimeoutConst = setTimeout(function(){
+      plugin.FullScreen.getInstance().hide();
+      isActionBarVisible = false;
+    }, 5000);
+
+  }
   this.handleKey = function(e) {
     if(e.which === 37){
       me.goToPrevPage();
@@ -192,7 +206,7 @@ fm.Class('ArticleController> jsfm.Controller', function(me, ArticleView, PageCre
   };
 
   this.onDestroy = function (){
-    plugin.FullScreen.getInstance().show(me.viewControllers);
+    plugin.FullScreen.getInstance().show();
     window.plugins.insomnia.allowSleepAgain();
   };
 });

@@ -20,14 +20,14 @@ fm.Class("FullScreen", function  (me) {
 
 	this.show = function (elem){
 		if(this.isSupported){
-			elem.show();
+			//elem.show();
 			me.plugin.showSystemUI(successFunction, errorFunction);
 		}
 	};
 
 	this.hide = function (elem){
 		if(this.isSupported){
-			elem.hide();
+			//elem.hide();
 			me.plugin.immersiveMode(successFunction, errorFunction);
 		}
 	};
