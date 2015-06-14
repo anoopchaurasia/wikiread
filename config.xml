@@ -43,24 +43,23 @@
         <icon src="res/ios/Icon-60@2x.png" width="120" height="120" />
     </platform>
     <platform name="android">
-        <splash src="res/android/drawable-land-hdpiscreen.png" density="land-hdpi"/>
-        <splash src="res/android/drawable-land-ldpiscreen.png" density="land-ldpi"/>
-        <splash src="res/android/drawable-land-mdpiscreen.png" density="land-mdpi"/>
-        <splash src="res/android/drawable-land-xhdpiscreen.png" density="land-xhdpi"/>
-        <splash src="res/android/drawable-land-xxhdpiscreen.png" density="land-xxhdpi"/>
-        <splash src="res/android/drawable-hdpiscreen.png" density="port-hdpi"/>
-        <splash src="res/android/drawable-ldpiscreen.png" density="port-ldpi"/>
-        <splash src="res/android/drawable-mdpiscreen.png" density="port-mdpi"/>
-        <splash src="res/android/drawable-xhdpiscreen.png" density="port-xhdpi"/>
-        <splash src="res/android/drawable-xxhdpiscreen.png" density="port-xxhdpi"/>
-        <splash src="res/android/screen.png"/>
+        <splash src="res/android/screens/drawable-land-hdpiscreen.png" density="land-hdpi"/>
+        <splash src="res/android/screens/drawable-land-ldpiscreen.png" density="land-ldpi"/>
+        <splash src="res/android/screens/drawable-land-mdpiscreen.png" density="land-mdpi"/>
+        <splash src="res/android/screens/drawable-land-xhdpiscreen.png" density="land-xhdpi"/>
+        <splash src="res/android/screens/drawable-land-xxhdpiscreen.png" density="land-xxhdpi"/>
+        <splash src="res/android/screens/drawable-hdpiscreen.png" density="port-hdpi"/>
+        <splash src="res/android/screens/drawable-ldpiscreen.png" density="port-ldpi"/>
+        <splash src="res/android/screens/drawable-mdpiscreen.png" density="port-mdpi"/>
+        <splash src="res/android/screens/drawable-xhdpiscreen.png" density="port-xhdpi"/>
+        <splash src="res/android/screens/drawable-xxhdpiscreen.png" density="port-xxhdpi"/>
 
-        <icon src="res/android/drawable-ldpiicon.png" density="ldpi" />
-        <icon src="res/android/drawable-mdpiicon.png" density="mdpi" />
-        <icon src="res/android/drawable-hdpiicon.png" density="hdpi" />
-        <icon src="res/android/drawable-xhdpiicon.png" density="xhdpi" />
-        <icon src="res/android/drawable-xxhdpiicon.png" density="xxhdpi" />
-        <icon src="res/android/drawable-icon.png"/>
+        <icon src="res/android/icons/drawable-ldpiicon.png" density="ldpi" />
+        <icon src="res/android/icons/drawable-mdpiicon.png" density="mdpi" />
+        <icon src="res/android/icons/drawable-hdpiicon.png" density="hdpi" />
+        <icon src="res/android/icons/drawable-xhdpiicon.png" density="xhdpi" />
+        <icon src="res/android/icons/drawable-xxhdpiicon.png" density="xxhdpi" />
+        <icon src="res/android/icons/drawable-icon.png"/>
     </platform>
     <preference name="SplashScreenDelay" value="50000" />
     <preference name="SplashScreen" value="screen"/>
